@@ -1,0 +1,9 @@
+.padding-tb{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.vertical-center{
+    display: block;
+    margin-top:auto;
+    margin-bottom: auto;
+}
