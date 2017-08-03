@@ -1,2 +1,44 @@
-<button type="button"  class="btn btn-primary" (click)="open()">Open modal</button>
-<button type="button"  class="btn btn-primary" (click)="showUsers()">Show users</button>
+<div class="container bg-faded rounded vertical-margin padding-tb">
+    <div class="row">
+        <h3 class="section-title">User crud</h3>
+    </div>
+    <div class="row">
+        <div class="col">
+            <button type="button"  class="btn btn-secondary col-center" (click)="showUsers()">
+                <i class="fa fa-user-circle fa-5x icon-upon icon-primary" aria-hidden="true"></i>
+                <p class="button-text">Show users</p>
+            </button>
+        </div>
+        <div class="col">
+            <button type="button"  class="btn btn-secondary col-center" (click)="goToCreateUserPage()">
+                <i class="fa fa-plus-circle fa-5x icon-upon icon-primary" aria-hidden="true"></i>
+                <p class="button-text">Create user</p>
+            </button>
+        </div>
+        <div class="col">
+            <button type="button"  class="btn btn-secondary col-center" (click)="goToTypesPage()">
+                <i class="fa fa-check-square fa-5x icon-upon icon-primary" aria-hidden="true"></i>
+                <p class="button-text">Show types</p>
+            </button>
+        </div>
+         <div class="col">
+            <button type="button"  class="btn btn-secondary col-center" (click)="goToCreateTypePage()">
+                <i class="fa fa-check-square-o fa-5x icon-upon icon-primary" aria-hidden="true"></i>
+                <p class="button-text">Create type</p>
+            </button>
+        </div>
+        
+    </div>
+    <hr>
+    <div class="row">
+        <h3 class="section-title">Modal examples</h3>
+    </div>
+    <div class="row">
+        <div class="col">
+            <button type="button"  class="btn btn-secondary col-center" (click)="open()">
+                <i class="fa fa-commenting fa-5x icon-upon icon-primary" aria-hidden="true"></i>
+                <p class="button-text">Open modal</p>
+            </button>
+        </div>          
+    </div>    
+</div>        

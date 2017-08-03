@@ -1,9 +1,12 @@
-export class Usuario{
+import { TipoUsuario } from "./TipoUsuario";
+
+export class Usuario {
     private _nome:string;
     private _email:string;
     private _senha:string;
     private _rg:number;
-    private _nascimento:Date;
+    private _nascimento:string;
+    private _tipo:TipoUsuario;
 
     get nome(){
         return this._nome;
@@ -36,8 +39,15 @@ export class Usuario{
     get nascimento(){
         return this._nascimento;
     }
-    set nascimento(nascimento:Date){
+    set nascimento(nascimento:string){
         this._nascimento = nascimento;
+    }
+    
+    get tipo(){
+        return this._tipo;
+    }
+    set tipo(tipo:TipoUsuario){
+        this._tipo = tipo;
     }
 
     

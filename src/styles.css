@@ -1,4 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
-html{
+body{
     background-color: #0275D8;
+}
+p{
+    margin: 0;
+}
+.padding-tb{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.vertical-margin{
+    margin-top:1rem;
+}
+.section-title{
+    margin: 1rem auto;
+    color:gray;
 }

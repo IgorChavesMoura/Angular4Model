@@ -1,0 +1,17 @@
+.icon-upon{
+    display:block;
+}
+.icon-primary{
+    color:#0275D8;
+}
+.section-title{
+    margin: 1rem auto;
+    color:gray;
+}
+.col-center{
+    margin:0 auto;
+    display: block;
+}
+.button-text{
+    margin-top:0.5rem;
+}

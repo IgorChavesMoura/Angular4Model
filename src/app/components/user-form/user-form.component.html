@@ -1,37 +1,57 @@
 
-<div class="container bg-faded padding-tb rounded ">
-  <form [formGroup]="form">
-    <div class="form-group">
+<div class="container bg-faded padding-tb rounded vertical-margin">
+  <h3 class="section-title" *ngIf="notFoundMessage">{{notFoundMessage}}</h3>
+  <form (ngSubmit)="onSubmit()" *ngIf="user"> 
+    <div class="form-group" [class.has-danger]="nameInvalid">
       <label for="name">Name</label>
-      <input type="text" class="form-control" id="name" placeholder="Enter user name"> 
+      <input type="text" [class.form-control-danger]="nameInvalid" class="form-control" id="name" name="name" [(ngModel)]="user.nome" placeholder="Enter user name"> 
+      <div class="form-control-feedback" *ngIf="nameInvalid" >Name cannot be empty</div>
     </div>  
-    <div class="form-group">
+    
+    <div class="form-group" [class.has-danger]="emailInvalid">
       <label for="email">Email</label>
-      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter user email">
+      <input type="email" [class.form-control-danger]="emailInvalid" class="form-control"  id="email" name="email" [(ngModel)]="user.email"  aria-describedby="emailHelp" placeholder="Enter user email">
+      <div class="form-control-feedback" *ngIf="emailInvalid" >Email invalid or empty</div>
     </div>
-    <div class="form-group">
+    
+    <div class="form-group" [class.has-danger]="passInvalidShow() || passwordInvalid" [class.has-success]="passHasStrength()">
       <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" placeholder="Enter user password">
+      <input type="password" class="form-control" [class.form-control-success]="passHasStrength()" [class.form-control-danger]="!passHasStrength()" id="password" name="password" [(ngModel)]="user.senha"  placeholder="Enter user password">
+      <div class="form-control-feedback" *ngIf="passwordInvalid" >Password invalid or empty</div>
     </div>
-    <div class="form-group">
+    
+    <div class="form-group" [class.has-danger]="confirmInvalidShow() || confirmInvalid" [class.has-success]="confirmValidShow()">
       <label for="confirmPassword">Confirm password</label>
-      <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm the password">
-      
+      <input type="password" class="form-control" [class.form-control-success]="passMatchConfirm()" [class.form-control-danger]="!passMatchConfirm() || confirmInvalid" id="confirmPassword" name="confirmPassword" [(ngModel)]="passwordConfirm"  placeholder="Confirm the password">
+      <div class="form-control-feedback" *ngIf="confirmInvalid" >Confirm invalid</div>
     </div>  
-    <div class="form-group">
+    
+    <div class="form-group" [class.has-danger]="rgInvalid">
       <label for="rg">RG</label>
-      <input type="number" class="form-control" id="rg" placeholder="Enter user rg number">
+      <input type="text" [textMask]="getRgMask()" [class.form-control-danger]="rgInvalid"  class="form-control" id="rg" name="rg" [(ngModel)]="user.rg"  placeholder="Enter user rg number">
+      <div class="form-control-feedback" *ngIf="rgInvalid" >Rg invalid or empty</div>
     </div>
+    
     <div class="form-group">
       <label for="birth">Birth date</label>
       <div class="input-group">
         <input class="form-control" placeholder="yyyy-mm-dd"
-              id="birth" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+              id="birth" name="dp" [(ngModel)]="datepickerResult" [minDate]="datepickerBounds.min" [maxDate]="datepickerBounds.max" ngbDatepicker #d="ngbDatepicker">
         <div class="input-group-addon" (click)="d.toggle()" >
           <i class="fa fa-calendar" aria-hidden="true"></i>
         </div>
       </div>
     </div>
     
+    <div class="from-group">
+      <label for="type">User type</label>
+      <select  name="type" [compareWith]="compareTypesbyId" id="type" [(ngModel)]="selectedType" class="form-control">
+        <option *ngFor="let userType of userTypes" [ngValue]="userType"> {{userType.perfil}}</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div> 
   </form>
 </div>

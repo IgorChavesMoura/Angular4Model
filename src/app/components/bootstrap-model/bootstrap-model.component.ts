@@ -6,6 +6,7 @@ import { ModalComponent } from '../modal/modal.component';
 
 import { UserService } from '../../services/user/user.service';
 
+import { Router }  from '@angular/router';
 @Component({
   selector: 'app-bootstrap-model',
   templateUrl: './bootstrap-model.component.html',
@@ -15,7 +16,7 @@ export class BootstrapModelComponent implements OnInit {
 
   
 
-  constructor(private modal:NgbModal, private userService:UserService) { 
+  constructor(private modal:NgbModal, private router:Router) { 
      
   }
 
@@ -23,11 +24,17 @@ export class BootstrapModelComponent implements OnInit {
   }
   
   showUsers(){
-    this.userService.getAllUsers().subscribe(usuarios => {
-      console.log(usuarios);
-    });
+    this.router.navigate(['/users']);
   }
-
+  goToCreateUserPage(){
+    this.router.navigate(['/users/create']);
+  }
+  goToTypesPage(){
+    this.router.navigate(['/users/types']);
+  }
+  goToCreateTypePage(){
+    this.router.navigate(['/users/types/create']);
+  }
   open() {
     const modalRef = this.modal.open(ModalComponent);
     modalRef.componentInstance.name = 'World';

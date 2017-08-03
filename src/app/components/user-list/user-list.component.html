@@ -1,0 +1,15 @@
+
+<div class="container rounded bg-faded vertical-margin padding-tb">
+  <div class="row">
+    <h3 class="section-title">Users</h3>
+  </div>
+  <hr>
+  <ng2-smart-table 
+    [settings]="tableSettings" 
+    [source]="users"
+    (deleteConfirm)="onDeleteConfirm($event)"
+    (editConfirm)="onSaveConfirm($event)"
+    (createConfirm)="onCreateConfirm($event)"
+    (custom)="onCustomEdit($event)" >
+  </ng2-smart-table>
+</div>

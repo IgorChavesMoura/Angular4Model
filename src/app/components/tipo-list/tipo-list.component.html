@@ -1,0 +1,10 @@
+<div class="container rounded bg-faded vertical-margin padding-tb">
+ <ng2-smart-table 
+    [settings]="tableSettings" 
+    [source]="types"
+    (deleteConfirm)="onDeleteConfirm($event)"
+    (editConfirm)="onSaveConfirm($event)"
+    (createConfirm)="onCreateConfirm($event)"
+    (custom)="onCustomEdit($event)" >
+  </ng2-smart-table>
+</div>  

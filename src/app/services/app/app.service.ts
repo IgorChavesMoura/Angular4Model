@@ -3,14 +3,15 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AppService {
 
-  private _title:string;
+  private _title:string = 'App';
 
   constructor() { 
-    this._title = 'App';
+
   }
 
   public get title(){
     return this._title;
   }
+
 
 }
