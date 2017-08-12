@@ -8,6 +8,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule }    from '@angular/http';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { TextMaskModule } from 'angular2-text-mask';
+import { ChartsModule } from 'ng2-charts';
+
 
 
 //Components
@@ -19,11 +21,15 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { TipoFormComponent } from './components/tipo-form/tipo-form.component';
 import { TipoListComponent } from './components/tipo-list/tipo-list.component';
+import { ChartListComponent } from './components/chart-list/chart-list.component';
+import { ChartComponent } from './components/chart/chart.component';
 
 //Services
 import { UserService } from './services/user/user.service';
 import { AppService } from './services/app/app.service';
 import { MaskService } from './services/mask/mask.service';
+
+
 
 
 
@@ -34,11 +40,13 @@ import { MaskService } from './services/mask/mask.service';
 const appRoutes : Routes = [
   { path:'model', component:BootstrapModelComponent },
   { path:'home', component:HomeComponent },
+  { path:'charts', component:ChartListComponent },
   { path:'users', component:UserListComponent },
   { path:'users/create', component:UserFormComponent },
   { path:'users/edit/:id', component:UserFormComponent },
   { path:'users/types', component:TipoListComponent },
   { path:'users/types/create', component:TipoFormComponent },
+  { path:'users/types/edit/:id', component:TipoFormComponent },
   { path: '**', redirectTo:'/home', pathMatch:'full' }
 ];
 
@@ -51,7 +59,9 @@ const appRoutes : Routes = [
     UserFormComponent,
     UserListComponent,
     TipoFormComponent,
-    TipoListComponent
+    TipoListComponent,
+    ChartListComponent,
+    ChartComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -62,7 +72,8 @@ const appRoutes : Routes = [
     BrowserAnimationsModule,
     HttpModule,
     Ng2SmartTableModule,
-    TextMaskModule
+    TextMaskModule,
+    ChartsModule
   ],
   entryComponents:[
     ModalComponent

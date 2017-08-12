@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { Usuario } from '../../models/Usuario';
 import { TipoUsuario } from '../../models/TipoUsuario';
+import { UsersData } from '../../models/UsersData';
 import { Observable }  from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -17,6 +18,11 @@ export class UserService {
 
   getAllUsers():Observable<Usuario[]>{
     return this.http.get(this.usersUrl).map(response => response.json() as Usuario[]);
+  }
+  getUsersData():Observable<UsersData[]>{
+    let usersDataUrl = `${this.usersUrl}/data`;
+
+    return this.http.get(usersDataUrl).map(response => response.json() as UsersData[]);
   }
   createUser(user:Usuario):Observable<any>{
     let userReqBody = JSON.stringify({
@@ -38,6 +44,13 @@ export class UserService {
   getUserTypes():Observable<TipoUsuario[]>{
     
     return this.http.get(this.typesUrl).map(response => response.json() as TipoUsuario[]);
+  }
+  
+  getUserType(id:string):Observable<TipoUsuario>{
+    let typeUrl = `${this.typesUrl}/${id}`;
+    return this.http.get(typeUrl).map(response => {
+        return response.json() as TipoUsuario;
+    });
   }
   createUserType(type:TipoUsuario):Observable<any>{
     let typeReqBody = JSON.stringify({

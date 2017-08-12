@@ -8,7 +8,7 @@ import { UserService } from '../../services/user/user.service';
 
 import { Router }  from '@angular/router';
 @Component({
-  selector: 'app-bootstrap-model',
+  selector: 'bootstrap-model',
   templateUrl: './bootstrap-model.component.html',
   styleUrls: ['./bootstrap-model.component.css']
 })

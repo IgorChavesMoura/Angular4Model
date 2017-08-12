@@ -28,7 +28,7 @@
     
     <div class="form-group" [class.has-danger]="rgInvalid">
       <label for="rg">RG</label>
-      <input type="text" [textMask]="getRgMask()" [class.form-control-danger]="rgInvalid"  class="form-control" id="rg" name="rg" [(ngModel)]="user.rg"  placeholder="Enter user rg number">
+      <input type="text"  [class.form-control-danger]="rgInvalid"  class="form-control" id="rg" name="rg" [(ngModel)]="user.rg"  placeholder="Enter user rg number">
       <div class="form-control-feedback" *ngIf="rgInvalid" >Rg invalid or empty</div>
     </div>
     

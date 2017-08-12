@@ -5,11 +5,11 @@ import { UserService } from '../../services/user/user.service';
 import { MaskService } from '../../services/mask/mask.service';
 import { DateHelper } from '../../helpers/DateHelper';
 import { PasswordHelper } from '../../helpers/PasswordHelper';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
-  selector: 'app-form',
+  selector: 'user-form',
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.css']
 })
@@ -30,7 +30,7 @@ export class UserFormComponent implements OnInit {
   
 
   constructor(private userService:UserService, private route:ActivatedRoute,
-              private maskService:MaskService) {
+              private maskService:MaskService, private router:Router) {
     
   }
 
@@ -72,6 +72,7 @@ export class UserFormComponent implements OnInit {
       this.user.tipo = this.selectedType;
       this.userService.createUser(this.user).subscribe(response => {
         console.log(response);
+        this.router.navigate(['users']);
       });
     } else {
       this.passwordInvalid = PasswordHelper.passwordInvalid(this.user.senha);
@@ -114,6 +115,7 @@ export class UserFormComponent implements OnInit {
     return this.user.email != null && this.user.email.length > 0;
   }
   rgAvaliableToSend(){
+    console.log(this.user.rg);
     return this.user.rg != null && this.user.rg > 0;
   }
   avaliableToSend(){
@@ -121,4 +123,3 @@ export class UserFormComponent implements OnInit {
   }
 
 }
-

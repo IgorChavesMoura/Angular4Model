@@ -1,4 +1,5 @@
 <div class="container bg-faded padding-tb rounded vertical-margin">
+  <h3 class="section-title" *ngIf="notFoundMessage">{{notFoundMessage}}</h3>
   <form (ngSubmit)="onSubmit()" *ngIf="userType">
     <div class="form-group">
       <label for="type">Type name</label>

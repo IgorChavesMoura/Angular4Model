@@ -4,7 +4,7 @@ import { Usuario } from '../../models/Usuario';
 import { Router }  from '@angular/router';
 
 @Component({
-  selector: 'app-user-list',
+  selector: 'user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css']
 })
