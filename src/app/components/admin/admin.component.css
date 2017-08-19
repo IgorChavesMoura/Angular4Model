@@ -1,0 +1,162 @@
+.item {
+   margin: 5px;
+  list-style: none;
+  /* background: #ccc;
+  display: flex;
+  height: 20px;
+  padding: 10px;
+  text-align: center;
+  border: 4px solid rgba(253, 253, 253, 0.5); */
+}
+
+.subItem {
+  list-style: none;
+  margin: 5px;
+  /* color: #fff;
+  background: #0E8D94;
+  width: 100%;
+  height: 20px;
+  padding: 10px;
+  text-align: center;
+  border: 4px solid rgba(253, 253, 253, 0.5); */
+}
+
+.containerSubItems .subItem {}
+
+.comp {
+      margin: 5px;
+  list-style: none;
+  /* 
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 20px;
+  padding: 10px; 
+  color: #fff;
+   border: 4px solid rgba(253, 253, 253, .2); 
+   */
+}
+
+.comp1 {
+  /* background: #B5AC01; */
+}
+
+.comp2 {
+  /* background: #036564; */
+}
+
+.comp3 {
+  /* background: #CC333F; */
+}
+
+.row {
+  /* background: #556270; */
+  min-height: 30px;
+}
+
+.container1 {
+  background: #666;
+  min-height: 100px;
+}
+
+.container2 {
+  background: #49708A;
+  min-height: 100px;
+}
+
+.ex-moved {
+/* 
+  background: red;
+   */
+}
+
+.ex-over {
+  background: green;
+  padding: 20px 0;
+}
+
+.containerItems {
+  padding: 10px 0;
+}
+
+.containerSubItems {
+  display: flex;
+    min-height: 30px;
+/* 
+  display: flex;
+  min-height: 40px;
+  background: #1BB0CE;
+  border: 4px solid rgba(253, 253, 253, .2);
+   */
+}
+
+
+
+
+
+
+
+
+
+
+/* ******************************** */
+
+body>* {
+  width: 30rem;
+  margin: 2rem auto;
+}
+
+section {
+  display: flex;
+}
+
+section>* {
+  box-sizing: border-box;
+}
+
+header {
+  background-color: hsl(0, 100%, 80%);
+  order: 1;
+}
+
+footer {
+  background-color: hsl(72, 70%, 80%);
+  order: 5;
+}
+
+main {
+  background-color: hsl(144, 70%, 80%);
+  order: 3;
+}
+
+nav {
+  background-color: hsl(216, 70%, 80%);
+  order: 2;
+}
+
+aside {
+  background-color: hsl(288, 70%, 80%);
+  order: 4;
+}
+
+.editor {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.editor header,
+.editor footer {
+  flex-basis: 100%;
+}
+
+.editor main {
+  flex-grow: 1;
+}
+
+.editor nav {
+  flex-basis: 25%;
+}
+
+.editor aside {
+  flex-basis: 25%;
+}

@@ -9,6 +9,7 @@ import { HttpModule }    from '@angular/http';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ChartsModule } from 'ng2-charts';
+import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 
 
 
@@ -23,11 +24,13 @@ import { TipoFormComponent } from './components/tipo-form/tipo-form.component';
 import { TipoListComponent } from './components/tipo-list/tipo-list.component';
 import { ChartListComponent } from './components/chart-list/chart-list.component';
 import { ChartComponent } from './components/chart/chart.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 //Services
 import { UserService } from './services/user/user.service';
 import { AppService } from './services/app/app.service';
 import { MaskService } from './services/mask/mask.service';
+import { EscapeHtmlPipePipe } from './pipes/escape-html/escape-html-pipe.pipe';
 
 
 
@@ -47,6 +50,9 @@ const appRoutes : Routes = [
   { path:'users/types', component:TipoListComponent },
   { path:'users/types/create', component:TipoFormComponent },
   { path:'users/types/edit/:id', component:TipoFormComponent },
+
+  { path:'admin', component:AdminComponent },
+
   { path: '**', redirectTo:'/home', pathMatch:'full' }
 ];
 
@@ -61,7 +67,9 @@ const appRoutes : Routes = [
     TipoFormComponent,
     TipoListComponent,
     ChartListComponent,
-    ChartComponent
+    ChartComponent,
+    AdminComponent,
+    EscapeHtmlPipePipe
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -73,7 +81,8 @@ const appRoutes : Routes = [
     HttpModule,
     Ng2SmartTableModule,
     TextMaskModule,
-    ChartsModule
+    ChartsModule,
+    DragulaModule
   ],
   entryComponents:[
     ModalComponent
