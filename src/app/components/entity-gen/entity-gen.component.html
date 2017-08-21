@@ -1,10 +1,10 @@
 <div class="container">
-  <div class='wrapper row  text-primary'>
-    <div class='container block col bg-dark text-primary' [dragula]='"another-bag"' [dragulaModel]='many'>
-      <div *ngFor='let text of many' class="inner-block" [innerHtml]='text'></div>
+  <div class='wrapper row  text-light'>
+    <div class='container block col container-models' [dragula]='"bag-one"' [dragulaModel]='many'>
+      <div *ngFor='let text of many' class="inner-block" >{{text}}</div>
     </div>
-    <div class='wrapper block col bg-dark text-primary' [dragula]='"another-bag"' [dragulaModel]='many2'>
-      <div *ngFor='let text of many2'class="inner-block"   [innerHtml]='text'></div>
+    <div class='wrapper block col' [dragula]='"bag-one"' [dragulaModel]='many2'>
+      <div *ngFor='let text of many2'class="inner-block" >{{text}}</div>
     </div>
   </div>
 </div>

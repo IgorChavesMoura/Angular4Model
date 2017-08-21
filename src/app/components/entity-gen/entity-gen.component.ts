@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
-
+import { StyleHelper } from '../../helpers/StyleHelper';
 
 @Component({
   selector: 'app-entity-gen',
@@ -12,16 +12,29 @@ export class EntityGenComponent implements OnInit {
   public many: Array<string> = ['The', 'possibilities', 'are', 'endless!'];
   public many2: Array<string> = ['Explore', 'them'];
 
-  constructor(private dragula:DragulaService) { 
+  constructor(private dragula: DragulaService) {
 
   }
 
   ngOnInit() {
+
+    this.dragula.setOptions('bag-two',{
+      copy:(el,container,handle)=>{
+
+      }
+    });
+
     this.dragula.dropModel.subscribe((value) => {
       this.onDropModel(value.slice(1));
     });
     this.dragula.removeModel.subscribe((value) => {
       this.onRemoveModel(value.slice(1));
+    }); 
+    this.dragula.over.subscribe((value) => {
+      this.onOver(value.slice(1));
+    });
+    this.dragula.out.subscribe((value) => {
+      this.onOut(value.slice(1));
     });
 
   }
@@ -33,6 +46,14 @@ export class EntityGenComponent implements OnInit {
   private onRemoveModel(args) {
     let [el, source] = args;
     // do something else
+  }
+  private onOver(args) {
+    let [e, el, container] = args;
+    StyleHelper.addClass(el, 'ex-over');
+  }
+  private onOut(args) {
+    let [e, el, container] = args;
+    StyleHelper.removeClass(el, 'ex-over');
   }
 
 }
