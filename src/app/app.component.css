@@ -1,0 +1,9 @@
+.logo{
+    max-height: 100px;
+    max-width: 100px;
+}
+nav{
+    padding-top:0 !important;
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+}

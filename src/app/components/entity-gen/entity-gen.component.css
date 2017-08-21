@@ -5,7 +5,16 @@
     margin: 1rem;
     border-radius: 5px;
     padding: .5rem;
+    background-color: #FFFBF7;
+    box-shadow: 2px 2px 5px #444444;
 }
 .inner-block{
+    margin: 1rem 0;
     border-radius: 5px;
+    text-align: center;
+    background-color: #007bff;
+    border: 1px solid #00356E;
+}
+.ex-over{
+    background-color:green;
 }
