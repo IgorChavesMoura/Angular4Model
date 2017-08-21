@@ -10,9 +10,9 @@ import { StyleHelper } from '../../helpers/StyleHelper';
 export class EntityGenComponent implements OnInit {
 
   public many: Array<any> = [
-    { tipo:'tipo1', conteudo:'conteudo1' },
-    { tipo:'tipo2', conteudo:'conteudo2' },
-    { tipo:'tipo3', conteudo:'conteudo3' }
+    { tipo:'text', conteudo:'conteudo1' },
+    { tipo:'checkbox', conteudo:'conteudo2' },
+    { tipo:'radio', conteudo:'conteudo3' }
   
   ];
   public many2: Array<any> = [];
