@@ -1,10 +1,10 @@
 <div class="container">
   <div class='wrapper row  text-light'>
     <div class='container block col container-models' [dragula]='"bag-one"' [dragulaModel]='many'>
-      <div *ngFor='let text of many' class="inner-block" >{{text}}</div>
+      <div *ngFor='let one of many' class="inner-block acceptable" >{{one.tipo}}</div>
     </div>
     <div class='wrapper block col' [dragula]='"bag-one"' [dragulaModel]='many2'>
-      <div *ngFor='let text of many2'class="inner-block" >{{text}}</div>
+      <div *ngFor='let one of many2'class="inner-block removable" >{{one.conteudo}}</div>
     </div>
   </div>
 </div>

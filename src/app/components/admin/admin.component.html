@@ -1,33 +1,27 @@
-
-
-  <section class="editor">
-    <header>
-      <h1>{{title}}</h1>
-    </header>
-    <nav>
-      <ul [dragula]='"bag-one"' [dragulaModel]='comps' class="containerComps">
-        <li *ngFor="let comp of comps" [attr.data-id]="comp.id" class="comp {{comp.type}}" [innerHTML]="comp.html | keepHtml">{{comp.label}} [{{comp.type}}] </li>
-      </ul>
-
-
-
-    </nav>
-    <main>
-      <!-- <ul [dragula]='"bag-one"' [dragulaModel]='items' class="containerItems">
+<section class="editor">
+  <header>
+    <h1>{{title}}</h1>
+  </header>
+  <nav>
+    <ul [dragula]='"bag-one"' [dragulaModel]='comps' class="containerComps">
+      <li *ngFor="let comp of comps" [attr.data-id]="comp.id" class="comp {{comp.type}}" [innerHTML]="comp.html | keepHtml">{{comp.label}} [{{comp.type}}] </li>
+    </ul>
+  </nav>
+  <main>
+    <!-- <ul [dragula]='"bag-one"' [dragulaModel]='items' class="containerItems">
       <li *ngFor="let item of items" class="item">{{item.label}} {{item.type}}</li>
     </ul> -->
-      <ul [dragula]='"bag-one"' [dragulaModel]='items' class="containerItems">
-        <ng-container *ngFor="let item of items">
-          <ul *ngIf="item.type == 'row'" [dragula]='"bag-one"' [dragulaModel]='item.items' class="containerSubItems">
-            <ng-container *ngFor="let subItem of item.items">
-              <li class="subItem" [innerHTML]="subItem.html | keepHtml">{{subItem.label}} {{subItem.type}}</li>
-            </ng-container>
-          </ul>
-          <li *ngIf="item.type != 'row'" class="item" [innerHTML]="item.html | keepHtml">{{item}} label:{{item.label}} type:{{item.type}}</li>
-        </ng-container>
-      </ul>
-    </main>
-    <aside>aside</aside>
-    <footer>footer</footer>
-  </section>
-
+    <ul [dragula]='"bag-one"' [dragulaModel]='items' class="containerItems">
+      <ng-container *ngFor="let item of items">
+        <ul *ngIf="item.type == 'row'" [dragula]='"bag-one"' [dragulaModel]='item.items' class="containerSubItems">
+          <ng-container *ngFor="let subItem of item.items">
+            <li class="subItem" [innerHTML]="subItem.html | keepHtml">{{subItem.label}} {{subItem.type}}</li>
+          </ng-container>
+        </ul>
+        <li *ngIf="item.type != 'row'" class="item" [innerHTML]="item.html | keepHtml">{{item}} label:{{item.label}} type:{{item.type}}</li>
+      </ng-container>
+    </ul>
+  </main>
+  <aside>aside</aside>
+  <footer>footer</footer>
+</section>

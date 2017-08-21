@@ -9,8 +9,13 @@ import { StyleHelper } from '../../helpers/StyleHelper';
 })
 export class EntityGenComponent implements OnInit {
 
-  public many: Array<string> = ['The', 'possibilities', 'are', 'endless!'];
-  public many2: Array<string> = ['Explore', 'them'];
+  public many: Array<any> = [
+    { tipo:'tipo1', conteudo:'conteudo1' },
+    { tipo:'tipo2', conteudo:'conteudo2' },
+    { tipo:'tipo3', conteudo:'conteudo3' }
+  
+  ];
+  public many2: Array<any> = [];
 
   constructor(private dragula: DragulaService) {
 
@@ -18,9 +23,24 @@ export class EntityGenComponent implements OnInit {
 
   ngOnInit() {
 
-    this.dragula.setOptions('bag-two',{
+    this.dragula.setOptions('bag-one',{
       copy:(el,container,handle)=>{
+        console.log(container.className);
+        let inModels = new RegExp('(?:^|\\s+)' + 'container-models' + '(?:\\s+|$)').test(container.className);
+        return inModels;
+      },
+      accepts:(el,container,handle)=>{
+        console.log(el);
+        console.log(container);
+        console.log(handle);
+        let acceptable = new RegExp('(?:^|\\s+)' + 'acceptable' + '(?:\\s+|$)').test(el.className);
 
+        return acceptable;
+      },
+      removeOnSpill:(el,container,handle)=>{
+        let removable = new RegExp('(?:^|\\s+)' + 'removable' + '(?:\\s+|$)').test(el.className);
+
+        return removable;
       }
     });
 
