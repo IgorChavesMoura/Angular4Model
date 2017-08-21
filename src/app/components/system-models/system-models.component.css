@@ -37,7 +37,24 @@
 }
 .property-item{
     padding: .2em 1em;
+} 
+
+.module-item.active,
+.entity-item.active,
+.field-item.active,
+.property-item.active{
+    pointer-events: none;
 }
+
+.module-item,
+.entity-item,
+.field-item,
+.property-item{
+    user-select: none; 
+    cursor: pointer;
+}
+
+ 
 
 /******************* BADGES *******************/
 .badge-right{
