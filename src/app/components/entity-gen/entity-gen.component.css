@@ -1,0 +1,11 @@
+.wrapper{
+    cursor: pointer;
+}
+.block{
+    margin: 1rem;
+    border-radius: 5px;
+    padding: .5rem;
+}
+.inner-block{
+    border-radius: 5px;
+}

@@ -26,8 +26,8 @@ export class AdminComponent implements OnInit {
 
 
   constructor(private dragulaService: DragulaService) {
-
-  	dragulaService.setOptions('bag-one', {
+    
+    dragulaService.setOptions('bag-one', {
       copy: function (el, container, handle) {
       	let inComps = new RegExp('(?:^|\\s+)' + 'containerComps' + '(?:\\s+|$)').test(container.className);
       	console.log(container.className);
