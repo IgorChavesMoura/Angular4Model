@@ -26,6 +26,7 @@ import { ChartListComponent } from './components/chart-list/chart-list.component
 import { ChartComponent } from './components/chart/chart.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { EntityGenComponent } from './components/entity-gen/entity-gen.component';
+import { SystemModelsComponent } from './components/system-models/system-models.component';
 
 //Services
 import { UserService } from './services/user/user.service';
@@ -54,6 +55,7 @@ const appRoutes : Routes = [
   { path:'users/types/edit/:id', component:TipoFormComponent },
   { path:'gen/entity', component:EntityGenComponent },
   { path:'admin', component:AdminComponent },
+  { path:'systemmodels', component:SystemModelsComponent },
 
   { path: '**', redirectTo:'/home', pathMatch:'full' }
 ];
@@ -72,7 +74,8 @@ const appRoutes : Routes = [
     ChartComponent,
     AdminComponent,
     EscapeHtmlPipePipe,
-    EntityGenComponent
+    EntityGenComponent,
+    SystemModelsComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

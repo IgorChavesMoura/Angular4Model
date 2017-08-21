@@ -25,6 +25,7 @@ export class AdminComponent implements OnInit {
   	];
 
 
+
   constructor(private dragulaService: DragulaService) {
     
     dragulaService.setOptions('bag-one', {

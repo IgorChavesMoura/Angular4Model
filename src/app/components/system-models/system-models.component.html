@@ -1,0 +1,43 @@
+<div class="editor">
+
+  <div class="row">
+    <ul class="col list-group module-group" [dragula]='"another-bag"' [dragulaModel]='modules'>
+      <li *ngFor='let module of modules' class="list-group-item list-group-item-action list-group-item-dark module-item" [ngClass]="{'active': selectedModule == module}"
+        (click)="selectModule(module)">
+        <i class="fa fa-archive" aria-hidden="true"></i> {{module.name}}
+      </li>
+    </ul>
+
+    <ul class="col list-group entity-group" [dragula]='"another-bag"' *ngIf="selectedModule" [dragulaModel]='entities'>
+      <li *ngFor='let entity of selectedModule.entities' class="list-group-item list-group-item-action list-group-item-success entity-item"
+        [ngClass]="{'active': selectedEntity == entity}" (click)="selectEntity(entity)">
+        <i class="fa fa-sticky-note" aria-hidden="true"></i> {{entity.name}}
+      </li>
+    </ul>
+
+    <ul class="col list-group field-group" [dragula]='"another-bag"' *ngIf="selectedEntity" [dragulaModel]='fields'>
+      <li *ngFor='let field of selectedEntity.fields' class="list-group-item list-group-item-action field-item" [ngClass]="{'active': selectedField == field}"
+        (click)="selectField(field)">
+        <span class="badge badge-primary badge-right">String</span> {{field.name}}
+      </li>
+    </ul>
+
+    <ul class="col list-group property-group" [dragula]='"another-bag"' *ngIf="selectedField" [dragulaModel]='properties'>
+      <li *ngFor='let property of selectedField.properties' class="list-group-item list-group-item-action property-item">
+        {{property}}
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+
+<span class="badge badge-primary">Primary</span>
+<span class="badge badge-secondary">Secondary</span>
+<span class="badge badge-success">Success</span>
+<span class="badge badge-danger">Danger</span>
+<span class="badge badge-warning">Warning</span>
+<span class="badge badge-info">Info</span>
+<span class="badge badge-light">Light</span>
+<span class="badge badge-dark">Dark</span>

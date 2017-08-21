@@ -1,0 +1,46 @@
+.editor{
+    padding: 10px;
+}
+
+/******************* BOOTSTRAP *******************/
+.list-group{
+    max-width: 25%;
+}
+
+/******************* GROUPS *******************/
+.module-group{
+
+}
+
+.entity-group{
+
+}
+
+.field-group{
+
+}
+
+.property-group{
+
+}
+
+/******************* ITEMS *******************/
+.module-item{
+    padding: .6em .5em;
+    font-size: 1.3em;
+}
+.entity-item{
+    padding: .5em 1em;
+}
+.field-item{
+    padding: .7em 1em;
+}
+.property-item{
+    padding: .2em 1em;
+}
+
+/******************* BADGES *******************/
+.badge-right{
+    float: right;
+    padding: .4em;
+}
