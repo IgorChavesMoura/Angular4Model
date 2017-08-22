@@ -142,17 +142,21 @@ export class SystemModelsComponent implements OnInit {
     private selectModule(index) {
         console.log('selectModule: ' + index);
         this.selectedModuleId = index;
+        this.selectedEntityId = 0;
+        this.selectedFieldId = 0;
+        
     }
 
     private selectEntity(index) {
         console.log('selectEntity: ' + index);
         this.selectedEntityId = index;
-        //  this.selectedField = null;
+        this.selectedFieldId = 0;
     }
 
     private selectField(index) {
         console.log('selectField: ' + index);
         this.selectedFieldId = index;
+        
     }
 
     /*
