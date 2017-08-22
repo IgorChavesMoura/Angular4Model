@@ -10,9 +10,10 @@ import { StyleHelper } from '../../helpers/StyleHelper';
 export class EntityGenComponent implements OnInit {
 
   public many: Array<any> = [
-    { tipo:'text', conteudo:'conteudo1' },
-    { tipo:'checkbox', conteudo:'conteudo2' },
-    { tipo:'radio', conteudo:'conteudo3' }
+    { type:'text', name:'conteudo1', title:'Input de texto' },
+    { type:'checkbox', name:'conteudo2', title:'Input de checkbox' },
+    { type:'radio', name:'conteudo3', title:'Input de radio button' },
+    { type:'row', many:[] }
   
   ];
   public many2: Array<any> = [];
@@ -30,9 +31,6 @@ export class EntityGenComponent implements OnInit {
         return inModels;
       },
       accepts:(el,container,handle)=>{
-        console.log(el);
-        console.log(container);
-        console.log(handle);
         let acceptable = new RegExp('(?:^|\\s+)' + 'acceptable' + '(?:\\s+|$)').test(el.className);
 
         return acceptable;
@@ -60,6 +58,8 @@ export class EntityGenComponent implements OnInit {
   }
   private onDropModel(args) {
     let [el, target, source] = args;
+    console.log(this.many);
+    console.log(this.many2);
     // do something else
   }
 

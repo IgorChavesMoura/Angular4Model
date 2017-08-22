@@ -1,10 +1,35 @@
 <div class="container">
   <div class='wrapper row  text-light'>
     <div class='container block col container-models' [dragula]='"bag-one"' [dragulaModel]='many'>
-      <div *ngFor='let one of many' class="inner-block acceptable" >{{one.tipo}}</div>
+      <div *ngFor='let one of many' class="inner-block bordered acceptable bg-primary" >{{one.type}}</div>
     </div>
-    <div class='wrapper block col' [dragula]='"bag-one"' [dragulaModel]='many2'>
-      <div *ngFor='let one of many2'class="inner-block removable" >{{one.conteudo}}</div>
+    <div class='wrapper block col form-group bg-primary' [dragula]='"bag-one"' [dragulaModel]='many2'>
+      <div *ngFor='let one of many2' class="inner-block removable">
+        <div class="form-group" *ngIf="one.type==='text' || one.type==='password'" >
+          <label>{{one.title}}</label>
+          <input [type]="one.type" class="form-control" >
+        </div>
+        <div class="form-check" *ngIf="one.type==='checkbox' || one.type==='radio'">
+          <label class="form-check-label" >
+            <input [type]="one.type" class="form-check-input" />
+            {{one.title}}
+          </label>
+        </div>
+        <div class="wrapper block row bg-primary" *ngIf="one.type==='row'" [dragula]='"bag-one"' [dragulaModel]='one.many'>
+          <div class="inner-block removable col" *ngFor='let another of one.many' >
+            <div class="form-group" *ngIf="another.type==='text' || another.type==='password'" >
+              <label>{{another.title}}</label>
+              <input [type]="another.type" class="form-control" >
+            </div>
+            <div class="form-check" *ngIf="another.type==='checkbox' || another.type==='radio'">
+              <label class="form-check-label" >
+                <input [type]="another.type" class="form-check-input" />
+                {{another.title}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>   
     </div>
   </div>
 </div>
