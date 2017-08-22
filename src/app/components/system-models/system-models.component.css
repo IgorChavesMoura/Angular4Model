@@ -2,9 +2,20 @@
     padding: 10px;
 }
 
+pre{
+    line-height: 1.1;
+    font-size: .7em;
+}
+
+/******************* DRAGULA *******************/
+.ex-over {
+    background: rgba(0,0,0,0.1);
+    padding: 10px;
+  }
+
 /******************* BOOTSTRAP *******************/
 .list-group{
-    max-width: 25%;
+   /* max-width: 25%;*/
 }
 
 /******************* GROUPS *******************/
@@ -43,7 +54,8 @@
 .entity-item.active,
 .field-item.active,
 .property-item.active{
-    pointer-events: none;
+    /*pointer-events: none;*/
+    background: #616668;
 }
 
 .module-item,

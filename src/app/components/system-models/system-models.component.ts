@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DragulaService } from 'ng2-dragula/ng2-dragula'
+import { DragulaService } from 'ng2-dragula/ng2-dragula';
+import { StyleHelper } from '../../helpers/StyleHelper';
 
 @Component({
     selector: 'app-system-models',
@@ -7,15 +8,26 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula'
     styleUrls: ['./system-models.component.css']
 })
 export class SystemModelsComponent implements OnInit {
-    
-    public selectedModule;
-    public selectedEntity;
-    public selectedField;
-    public selectedProperty;
-    
-    constructor(private dragula: DragulaService) {
-     //   dragula.deadzone = 5;
 
+    public selectedModuleId: number = 0;
+    public selectedEntityId: number = 0;
+    public selectedFieldId: number = 0;
+    //  public selectedProperty;
+
+    constructor(private dragulaService: DragulaService) {
+        dragulaService.drag.subscribe((value) => {
+            this.onDrag(value.slice(1));
+        });
+        dragulaService.drop.subscribe((value) => {
+            this.onDrop(value.slice(1));
+            //const [bagName, e, el] = value;
+        });
+        dragulaService.over.subscribe((value) => {
+            this.onOver(value.slice(1));
+        });
+        dragulaService.out.subscribe((value) => {
+            this.onOut(value.slice(1));
+        });
     }
 
 
@@ -26,15 +38,35 @@ export class SystemModelsComponent implements OnInit {
                 {
                     name: 'User',
                     fields: [
-                        { name: 'id', properties: ['Unique', 'Primary'] },
-                        { name: 'name', properties: [] },
-                        { name: 'birthday', properties: [] }]
+                        {
+                            name: 'id',
+                            type: '',
+                            properties: ['Unique', 'Primary']
+                        },
+                        {
+                            name: 'name',
+                            type: '',
+                            properties: []
+                        },
+                        {
+                            name: 'birthday',
+                            type: '',
+                            properties: []
+                        }]
                 },
                 {
-                    name:'Type',
-                    fields:[
-                        { name: 'id', properties: ['Unique', 'Primary'] },
-                        { name: 'name', properties: [] },
+                    name: 'Type',
+                    fields: [
+                        {
+                            name: 'id',
+                            type: '',
+                            properties: ['Unique', 'Primary']
+                        },
+                        {
+                            name: 'name',
+                            type: '',
+                            properties: []
+                        },
                     ]
                 }
             ]
@@ -45,10 +77,26 @@ export class SystemModelsComponent implements OnInit {
                 {
                     name: 'Product',
                     fields: [
-                        { name: 'id', properties: ['Unique', 'Primary'] },
-                        { name: 'name', properties: [] },
-                        { name: 'color', properties: [] },
-                        { name: 'size', properties: [] },
+                        {
+                            name: 'id',
+                            type: '',
+                            properties: ['Unique', 'Primary']
+                        },
+                        {
+                            name: 'name',
+                            type: '',
+                            properties: []
+                        },
+                        {
+                            name: 'color',
+                            type: '',
+                            properties: []
+                        },
+                        {
+                            name: 'size',
+                            type: '',
+                            properties: []
+                        },
                     ]
                 }
 
@@ -91,47 +139,72 @@ export class SystemModelsComponent implements OnInit {
 
     ];
 
-    private selectModule(module) {
-        this.selectedModule = module;
-        this.selectedEntity = null;
-        this.selectedField = null;
-        this.selectedProperty = null;
+    private selectModule(index) {
+        console.log('selectModule: ' + index);
+        this.selectedModuleId = index;
     }
 
-    private selectEntity(entity) {
-        this.selectedEntity = entity;
-        this.selectedField = null;
-        this.selectedProperty = null;
-    } 
+    private selectEntity(index) {
+        console.log('selectEntity: ' + index);
+        this.selectedEntityId = index;
+        //  this.selectedField = null;
+    }
 
-    private selectField(field) {
-        this.selectedField = field;
-        this.selectedProperty = null;
-    } 
+    private selectField(index) {
+        console.log('selectField: ' + index);
+        this.selectedFieldId = index;
+    }
 
-    private selectProperty(property) {
-        this.selectedProperty = property;
-    } 
+    /*
+        private selectProperty(property) {
+            this.selectedProperty = property;
+        }
+    */
+    private onDrag(args) {
+        let [e, el] = args;
+        StyleHelper.removeClass(e, 'ex-moved');
+    }
+
+    private onDrop(args) {
+
+        let [el, target, source] = args;
+
+        StyleHelper.addClass(el, 'ex-moved');
 
 
+    }
+
+    private onOver(args) {
+        let [e, el, container] = args;
+        StyleHelper.addClass(el, 'ex-over');
+    }
+
+    private onOut(args) {
+        let [e, el, container] = args;
+        StyleHelper.removeClass(el, 'ex-over');
+    }
 
     ngOnInit() {
-        this.dragula.dropModel.subscribe((value) => {
-            this.onDropModel(value.slice(1));
-        });
-        this.dragula.removeModel.subscribe((value) => {
-            this.onRemoveModel(value.slice(1));
-        });
 
     }
-    private onDropModel(args) {
-        let [el, target, source] = args;
-        // do something else
-    }
-
-    private onRemoveModel(args) {
-        let [el, source] = args;
-        // do something else
-    }
-
+    /*
+        ngOnInit() {
+            this.dragula.dropModel.subscribe((value) => {
+                this.onDropModel(value.slice(1));
+            });
+            this.dragula.removeModel.subscribe((value) => {
+                this.onRemoveModel(value.slice(1));
+            });
+    
+        }
+        private onDropModel(args) {
+            let [el, target, source] = args;
+            // do something else
+        }
+    
+        private onRemoveModel(args) {
+            let [el, source] = args;
+            // do something else
+        }
+    */
 }
