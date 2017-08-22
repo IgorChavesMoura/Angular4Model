@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
 .editor{
     padding: 10px;
 }
@@ -7,47 +9,61 @@ pre{
     font-size: .7em;
 }
 
-/******************* DRAGULA *******************/
-.ex-over {
-    background: rgba(0,0,0,0.1);
-    padding: 10px;
-  }
-
 /******************* BOOTSTRAP *******************/
-.list-group{
-   /* max-width: 25%;*/
+.col-item{
+   max-width: 25%;
+}
+
+.btn-center{
+    margin: 0 auto;
+    display: block;
+    padding: .2em 1em .1em;
 }
 
 /******************* GROUPS *******************/
-.module-group{
 
+.col-item{
+    /*background: rgba(0,0,0,0.1);*/
+    padding: 5px; 
+}
+
+.module-group{
 }
 
 .entity-group{
-
 }
 
 .field-group{
-
 }
 
 .property-group{
+    
+}
 
+.module-group,
+.entity-group,
+.field-group,
+.property-group {
+    padding: 0 0 10px;
 }
 
 /******************* ITEMS *******************/
 .module-item{
     padding: .6em .5em;
     font-size: 1.3em;
+    
 }
+
 .entity-item{
     padding: .5em 1em;
+    font-size: 1.1em;
 }
 .field-item{
-    padding: .7em 1em;
+    padding: .4em 1em;
 }
 .property-item{
     padding: .2em 1em;
+    font-size: 0.8em;
 } 
 
 .module-item.active,
@@ -62,14 +78,93 @@ pre{
 .entity-item,
 .field-item,
 .property-item{
+    font-family:Oswald;
     user-select: none; 
     cursor: pointer;
 }
 
+.module-item i{
+    transform: translate(0px,-.1em);
+}
+
+.icon-field{
+    text-transform: uppercase;
+}
  
 
 /******************* BADGES *******************/
 .badge-right{
+    color: #fff;
     float: right;
-    padding: .4em;
+    margin-top: 2px;
+   /* padding: .4em; */
 }
+
+.type-string{
+    background-color: #FD135A;
+}
+.type-string-email{
+    background-color: #CE126A;
+}
+.type-number{
+    background-color: #007bff;
+}
+
+.type-number-currency{
+    background-color: #17a2b8;
+}
+
+.type-number-cpf{
+    background-color: #1780B8;
+}
+
+.type-number-color{
+    background-color: #00D0FF;
+}
+
+.type-boolean{
+    background-color: #FFA007;
+}
+
+.type-boolean-active{
+    background-color: #FFBF07;
+}
+
+.type-date{
+    background-color: #28a745;
+}
+
+.type-date-birthday{
+    background-color: #1FC946;
+}
+
+.type-enum{
+    background-color: #731FC9;
+}
+
+.type-file{
+    background-color: #FC284F;
+}
+
+/******************* DRAGULA *******************/
+.ex-over {
+    background: rgba(0,0,0,0.1);
+    padding: 10px;
+}
+/*
+
+
+{ id: '10', label: 'String',type: 'string', icon: 'fa-align-left' },
+{ id: '11', label: 'Email', type: 'string-email', icon: 'fa-envelope' },
+{ id: '20', label: 'Number', type: 'number', icon: 'fa-hashtag' },
+{ id: '21', label: 'Currency', type: 'number-currency', icon: 'fa-usd' },
+{ id: '22', label: 'Cpf', type: 'number-cpf', icon: 'fa-user' },
+{ id: '23', label: 'Color', type: 'number-color', icon: 'fa-square-o' },
+{ id: '30', label: 'Boolean', type: 'boolean', icon: 'fa-check-square' },
+{ id: '31', label: 'Active', type: 'boolean-active', icon: 'fa-check-square-o' },
+{ id: '40', label: 'Date', type: 'date', icon: 'fa-calendar-o' },
+{ id: '41', label: 'Birthday', type: 'date-birthday', icon: 'fa-calendar' },
+{ id: '50', label: 'Enum', type: 'enum', icon: 'fa-list' },
+{ id: '60', label: 'File', type: 'file', icon: 'fa-file-text' }
+
+*/

@@ -40,17 +40,22 @@ export class SystemModelsComponent implements OnInit {
                     fields: [
                         {
                             name: 'id',
-                            type: '',
+                            type: 'number',
                             properties: ['Unique', 'Primary']
                         },
                         {
                             name: 'name',
-                            type: '',
+                            type: 'string',
+                            properties: []
+                        },
+                        {
+                            name: 'email',
+                            type: 'string-email',
                             properties: []
                         },
                         {
                             name: 'birthday',
-                            type: '',
+                            type: 'date-birthday',
                             properties: []
                         }]
                 },
@@ -59,12 +64,12 @@ export class SystemModelsComponent implements OnInit {
                     fields: [
                         {
                             name: 'id',
-                            type: '',
+                            type: 'number',
                             properties: ['Unique', 'Primary']
                         },
                         {
                             name: 'name',
-                            type: '',
+                            type: 'string',
                             properties: []
                         },
                     ]
@@ -79,24 +84,28 @@ export class SystemModelsComponent implements OnInit {
                     fields: [
                         {
                             name: 'id',
-                            type: '',
+                            type: 'number',
                             properties: ['Unique', 'Primary']
                         },
                         {
                             name: 'name',
-                            type: '',
-                            properties: []
+                            type: 'string'
                         },
                         {
                             name: 'color',
-                            type: '',
+                            type: 'number-color',
                             properties: []
                         },
                         {
                             name: 'size',
-                            type: '',
+                            type: 'number',
                             properties: []
                         },
+                        {
+                            name: 'value',
+                            type: 'number-currency',
+                            properties: []
+                        }
                     ]
                 }
 
@@ -105,58 +114,25 @@ export class SystemModelsComponent implements OnInit {
     ];
 
 
-    public types: Array<any> = [
-        {
-            id: '1', label: 'String', type: 'string', icon: 'fa-usd', subs: [
-                { id: '11', label: 'Email', type: 'email' },
-            ]
-        },
-        {
-            id: '2', label: 'Number', type: 'number', icon: 'fa-hashtag', subs: [
-                { id: '21', label: 'Currency', type: 'currency' },
-                { id: '22', label: 'Cpf', type: 'cpf' },
-            ]
-        },
-        {
-            id: '3', label: 'Boolean', type: 'boolean', icon: 'fa-check-square', subs: [
-                { id: '31', label: 'Active', type: 'active' },
-            ]
-        },
-        {
-            id: '4', label: 'Date', type: 'date', icon: 'fa-calendar', subs: [
-                { id: '41', label: 'Birthday', type: 'birthday' },
-            ]
-        },
-        {
-            id: '5', label: 'Enum', type: 'enum', icon: 'fa-list', subs: [
-            ]
-        },
-        {
-            id: '6', label: 'File', type: 'file', icon: 'fa-file-text', subs: [
-            ]
-        },
-
-
-    ];
 
     private selectModule(index) {
         console.log('selectModule: ' + index);
         this.selectedModuleId = index;
-        this.selectedEntityId = 0;
-        this.selectedFieldId = 0;
-        
+        //this.selectedEntityId = 0;
+        //this.selectedFieldId = 0;
+
     }
 
     private selectEntity(index) {
         console.log('selectEntity: ' + index);
         this.selectedEntityId = index;
-        this.selectedFieldId = 0;
+        //this.selectedFieldId = 0;
     }
 
     private selectField(index) {
         console.log('selectField: ' + index);
         this.selectedFieldId = index;
-        
+
     }
 
     /*
@@ -186,6 +162,26 @@ export class SystemModelsComponent implements OnInit {
     private onOut(args) {
         let [e, el, container] = args;
         StyleHelper.removeClass(el, 'ex-over');
+    }
+
+    public types: Array<any> = [
+        { id: '10', label: 'String',type: 'string', icon: 'fa-align-left' },
+        { id: '11', label: 'Email', type: 'string-email', icon: 'fa-envelope' },
+        { id: '20', label: 'Number', type: 'number', icon: 'fa-hashtag' },
+        { id: '21', label: 'Currency', type: 'number-currency', icon: 'fa-usd' },
+        { id: '22', label: 'Cpf', type: 'number-cpf', icon: 'fa-user' },
+        { id: '23', label: 'Color', type: 'number-color', icon: 'fa-square-o' },
+        { id: '30', label: 'Boolean', type: 'boolean', icon: 'fa-check-square' },
+        { id: '31', label: 'Active', type: 'boolean-active', icon: 'fa-check-square-o' },
+        { id: '40', label: 'Date', type: 'date', icon: 'fa-calendar-o' },
+        { id: '41', label: 'Birthday', type: 'date-birthday', icon: 'fa-calendar' },
+        { id: '50', label: 'Enum', type: 'enum', icon: 'fa-list' },
+        { id: '60', label: 'File', type: 'file', icon: 'fa-file-text' }
+    ];
+
+    public type(type: String) {
+        let itemType: any = this.types.filter((item: any) => item.type === type);
+        return itemType[0];
     }
 
     ngOnInit() {

@@ -2,34 +2,40 @@
 
   <div class="row">
 
-    <div class="col">
+    <div class="col col-item">
       <ul class=" list-group module-group" [dragula]='"bag1"' [dragulaModel]='modules'>
         <li *ngFor='let module of modules; let i = index' class="list-group-item list-group-item-action list-group-item-dark module-item"
           [ngClass]="{'active': selectedModuleId == i}" (click)="selectModule(i)">
           <i class="fa fa-archive" aria-hidden="true"></i> {{module.name}}
         </li>
       </ul>
+      <button type="button" class="btn btn-center"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
     </div>
 
-    <div class="col">
+    <div class="col col-item">
       <ul class=" list-group entity-group" [dragula]='"bag2"' [dragulaModel]='modules[selectedModuleId].entities'>
-        <li *ngFor='let entity of modules[selectedModuleId].entities; let i = index' class="list-group-item list-group-item-action list-group-item-success entity-item"
+        <li *ngFor='let entity of modules[selectedModuleId].entities; let i = index' class="list-group-item list-group-item-action entity-item"
           [ngClass]="{'active': selectedEntityId == i}" (click)="selectEntity(i)">
-          <i class="fa fa-sticky-note" aria-hidden="true"></i> {{entity.name}}
+          <i class="fa fa-folder" aria-hidden="true"></i> {{entity.name}}
         </li>
       </ul>
     </div>
 
-    <div class="col">
+    <div class="col col-item" *ngIf="modules[selectedModuleId].entities[selectedEntityId]">
       <ul class=" list-group field-group" [dragula]='"bag3"' [dragulaModel]='modules[selectedModuleId].entities[selectedEntityId].fields'>
         <li *ngFor='let field of modules[selectedModuleId].entities[selectedEntityId].fields; let i = index' class="list-group-item list-group-item-action field-item"
           [ngClass]="{'active': selectedFieldId == i}" (click)="selectField(i)">
-          <span class="badge badge-primary badge-right">String</span> {{field.name}}
+
+          <i class="fa fa-sticky-note" aria-hidden="true"></i>
+          
+          <span class="badge badge-right icon-field" [ngClass]="'type-' + field.type">
+              <i class="fa" aria-hidden="true" [ngClass]="type(field.type).icon"></i> {{field.type}}
+          </span> {{field.name}}
         </li>
       </ul>
     </div>
 
-    <div class="col">
+    <div class="col col-item" *ngIf="modules[selectedModuleId].entities[selectedEntityId].fields[selectedFieldId]">
       <ul class=" list-group property-group" [dragula]='"bag4"' [dragulaModel]='modules[selectedModuleId].entities[selectedEntityId].fields[selectedFieldId].properties'>
         <li *ngFor='let property of modules[selectedModuleId].entities[selectedEntityId].fields[selectedFieldId].properties; let i = index'
           class="list-group-item list-group-item-action property-item">
@@ -41,17 +47,6 @@
   </div>
 </div>
 
-
-
-
-<span class="badge badge-primary">Primary</span>
-<span class="badge badge-secondary">Secondary</span>
-<span class="badge badge-success">Success</span>
-<span class="badge badge-danger">Danger</span>
-<span class="badge badge-warning">Warning</span>
-<span class="badge badge-info">Info</span>
-<span class="badge badge-light">Light</span>
-<span class="badge badge-dark">Dark</span>
 
 <pre>{{modules | json}}</pre>
 
@@ -73,4 +68,3 @@
 </div>
 
 -->
-
