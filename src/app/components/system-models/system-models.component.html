@@ -3,6 +3,7 @@
   <div class="row">
 
     <div class="col col-item">
+      <h3>Modules</h3>
       <ul class=" list-group module-group" [dragula]='"bag1"' [dragulaModel]='modules'>
         <li *ngFor='let module of modules; let i = index' class="list-group-item list-group-item-action list-group-item-dark module-item"
           [ngClass]="{'active': selectedModuleId == i}" (click)="selectModule(i)">
@@ -13,15 +14,18 @@
     </div>
 
     <div class="col col-item">
+      <h3>Entities</h3>
       <ul class=" list-group entity-group" [dragula]='"bag2"' [dragulaModel]='modules[selectedModuleId].entities'>
         <li *ngFor='let entity of modules[selectedModuleId].entities; let i = index' class="list-group-item list-group-item-action entity-item"
           [ngClass]="{'active': selectedEntityId == i}" (click)="selectEntity(i)">
           <i class="fa fa-folder" aria-hidden="true"></i> {{entity.name}}
         </li>
       </ul>
+      <button type="button" class="btn btn-center"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
     </div>
 
     <div class="col col-item" *ngIf="modules[selectedModuleId].entities[selectedEntityId]">
+      <h3>Fields</h3>
       <ul class=" list-group field-group" [dragula]='"bag3"' [dragulaModel]='modules[selectedModuleId].entities[selectedEntityId].fields'>
         <li *ngFor='let field of modules[selectedModuleId].entities[selectedEntityId].fields; let i = index' class="list-group-item list-group-item-action field-item"
           [ngClass]="{'active': selectedFieldId == i}" (click)="selectField(i)">
@@ -33,15 +37,18 @@
           </span> {{field.name}}
         </li>
       </ul>
+      <button type="button" class="btn btn-center"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
     </div>
 
     <div class="col col-item" *ngIf="modules[selectedModuleId].entities[selectedEntityId].fields[selectedFieldId]">
+      <h3>Properties</h3>
       <ul class=" list-group property-group" [dragula]='"bag4"' [dragulaModel]='modules[selectedModuleId].entities[selectedEntityId].fields[selectedFieldId].properties'>
         <li *ngFor='let property of modules[selectedModuleId].entities[selectedEntityId].fields[selectedFieldId].properties; let i = index'
           class="list-group-item list-group-item-action property-item">
           {{property}}
         </li>
       </ul>
+      <button type="button" class="btn btn-center"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
     </div>
 
   </div>
