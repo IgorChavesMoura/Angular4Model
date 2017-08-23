@@ -1,35 +1,91 @@
 <div class="container">
+
+  <div class="block bg-primary">
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label class="text-light">Field Name</label>
+          <input type="text" class="form-control" #name>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label class="text-light">Field Type</label>
+          <select [(ngModel)]="selectedType" #fieldType class="form-control">
+          <option *ngFor="let type of types" [ngValue]="type.type" >{{type.type}}</option>
+        </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <button class="btn btn-default" (click)="addField(name.value,fieldType)">Add</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
   <div class='wrapper row  text-light'>
     <div class='container block col container-models' [dragula]='"bag-one"' [dragulaModel]='many'>
-      <div *ngFor='let one of many' class="inner-block bordered acceptable bg-primary" >{{one.type}}</div>
+      <div *ngFor='let one of many' class="inner-block bordered acceptable bg-primary">{{one.name}}</div>
     </div>
+    
     <div class='wrapper block col form-group bg-primary' [dragula]='"bag-one"' [dragulaModel]='many2'>
       <div *ngFor='let one of many2' class="inner-block removable">
-        <div class="form-group" *ngIf="one.type==='text' || one.type==='password'" >
+        <div class="form-group" *ngIf="one.type==='text' || one.type==='password'">
           <label>{{one.title}}</label>
-          <input [type]="one.type" class="form-control" >
+          <input [type]="one.type" class="form-control">
         </div>
-        <div class="form-check" *ngIf="one.type==='checkbox' || one.type==='radio'">
-          <label class="form-check-label" >
+        <div class="form-check" *ngIf="one.type==='checkbox'">
+          <label class="form-check-label">
             <input [type]="one.type" class="form-check-input" />
             {{one.title}}
           </label>
         </div>
-        <div class="wrapper block row bg-primary" *ngIf="one.type==='row'" [dragula]='"bag-one"' [dragulaModel]='one.many'>
-          <div class="inner-block removable col" *ngFor='let another of one.many' >
-            <div class="form-group" *ngIf="another.type==='text' || another.type==='password'" >
-              <label>{{another.title}}</label>
-              <input [type]="another.type" class="form-control" >
+        <div class="form-group" *ngIf="one.type==='radio'">
+          <label [for]="one.name">{{one.title}}</label>
+          <div class="row">
+            <div *ngFor="let value of radioValues" class="col">
+              <input [type]="one.type" [name]="one.name" [value]="value">{{value}}
             </div>
-            <div class="form-check" *ngIf="another.type==='checkbox' || another.type==='radio'">
-              <label class="form-check-label" >
+          </div>
+        </div>
+        <div class="wrapper block row bg-primary" *ngIf="one.type==='row'" [dragula]='"bag-one"' [dragulaModel]='one.many'>
+          <div class="inner-block removable col" *ngFor='let another of one.many'>
+            <div class="form-group" *ngIf="another.type==='text' || another.type==='password'">
+              <label>{{another.title}}</label>
+              <input [type]="another.type" class="form-control">
+            </div>
+            <div class="form-check" *ngIf="another.type==='checkbox' ">
+              <label class="form-check-label">
                 <input [type]="another.type" class="form-check-input" />
                 {{another.title}}
               </label>
             </div>
+            <div class="form-group" *ngIf="another.type==='radio'">
+                <label [for]="another.name">{{another.title}}</label>
+                <div class="row">
+                  <div *ngFor="let value of radioValues" class="col">
+                    <input [type]="another.type" [name]="another.name" [value]="value">{{value}}
+                  </div>
+                </div>
+            </div>
           </div>
         </div>
-      </div>   
+      </div>
+    </div>
+  
+  </div>
+  <div class="row">
+    <div class="col">
+      <pre>{{many | json}}</pre>
+    </div>
+    <div class="col">
+      <pre>{{many2 | json}}</pre>
     </div>
   </div>
-</div>
+  
