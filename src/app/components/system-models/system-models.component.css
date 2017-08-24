@@ -27,6 +27,14 @@ pre{
     padding: .2em 1em .1em;
 }
 
+.btn-group-center{
+    text-align: center;
+}
+
+.btn-group-center .btn-group{
+    margin: 10px 0;
+}
+
 /******************* GROUPS *******************/
 
 .col-item{
@@ -60,7 +68,7 @@ pre{
 .module-item{
     padding: .6em .5em;
     font-size: 1.3em;
-    
+    min-width: 200px;
 }
 
 
@@ -179,3 +187,18 @@ pre{
 { id: '60', label: 'File', type: 'file', icon: 'fa-file-text' }
 
 */
+
+
+/******************* actions *******************/
+
+
+
+.btn-add{
+    background: #057C46;
+    color:#fff;
+}
+
+.btn-lib{
+    background: #F15500;
+    color:#fff;
+}

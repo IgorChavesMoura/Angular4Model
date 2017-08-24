@@ -11,6 +11,9 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { ChartsModule } from 'ng2-charts';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 
+//ngx-bootstrap
+import { PopoverModule } from 'ngx-bootstrap/popover';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 
 //Components
@@ -60,6 +63,8 @@ const appRoutes : Routes = [
   { path: '**', redirectTo:'/home', pathMatch:'full' }
 ];
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,6 +83,8 @@ const appRoutes : Routes = [
     SystemModelsComponent
   ],
   imports: [
+    PopoverModule.forRoot(),
+    AccordionModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     NgbModule.forRoot(),
     FormsModule,

@@ -28,8 +28,35 @@ export class SystemModelsComponent implements OnInit {
         dragulaService.out.subscribe((value) => {
             this.onOut(value.slice(1));
         });
+
+        dragulaService.setOptions('bag1', {
+            copy: function (el, container, handle) {
+                let inComps = new RegExp('(?:^|\\s+)' + 'copyable' + '(?:\\s+|$)').test(el.className);
+                return inComps;
+            }
+            //,removeOnSpill: true
+
+            
+        });
+
     }
 
+    public copyModules: Array<any> = [
+        {
+            name: 'Module type 1',
+            entities: [
+                {
+                    name: 'User',
+                    fields: [
+                        {
+                            name: 'id',
+                            type: 'number',
+                            properties: ['Unique', 'Primary']
+                        }]
+                }
+            ]
+        },
+    ]
 
     public modules: Array<any> = [
         {
@@ -107,6 +134,21 @@ export class SystemModelsComponent implements OnInit {
                             properties: []
                         }
                     ]
+                },
+                {
+                    name: 'Type',
+                    fields: [
+                        {
+                            name: 'id',
+                            type: 'number',
+                            properties: ['Unique', 'Primary']
+                        },
+                        {
+                            name: 'name',
+                            type: 'string',
+                            properties: []
+                        },
+                    ]
                 }
 
             ]
@@ -165,7 +207,7 @@ export class SystemModelsComponent implements OnInit {
     }
 
     public types: Array<any> = [
-        { id: '10', label: 'String',type: 'string', icon: 'fa-align-left' },
+        { id: '10', label: 'String', type: 'string', icon: 'fa-align-left' },
         { id: '11', label: 'Email', type: 'string-email', icon: 'fa-envelope' },
         { id: '20', label: 'Number', type: 'number', icon: 'fa-hashtag' },
         { id: '21', label: 'Currency', type: 'number-currency', icon: 'fa-usd' },

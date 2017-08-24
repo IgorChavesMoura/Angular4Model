@@ -10,7 +10,35 @@
           <i class="fa fa-archive" aria-hidden="true"></i> {{module.name}}
         </li>
       </ul>
-      <button type="button" class="btn btn-center"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+
+      <div class="btn-group-center">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-add" [popover]="popTemplate" triggers="focus">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="btn btn-lib" [popover]="popTemplate1" triggers="focus">
+            <i class="fa fa-book" aria-hidden="true"></i>
+          </button>
+          
+        </div>
+
+        <accordion [closeOthers]="true">
+            <accordion-group heading="Header" class="card">
+              This content is straight in the template.
+            </accordion-group>
+            <accordion-group heading="Content 1">
+              <p>Content 1</p>
+            </accordion-group>
+            <accordion-group heading="Content 2">
+              <p>Content 2</p>
+            </accordion-group>
+          </accordion>
+
+
+      </div>  
+      
+
+
     </div>
 
     <div class="col col-item">
@@ -49,10 +77,40 @@
         </li>
       </ul>
       <button type="button" class="btn btn-center"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+
+      
+
     </div>
 
   </div>
 </div>
+
+
+
+  <ng-template #popTemplate1>
+      <accordion [closeOthers]="true">
+          <accordion-group heading="Header" class="card">
+            This content is straight in the template.
+          </accordion-group>
+          <accordion-group heading="Content 1">
+            <p>Content 1</p>
+          </accordion-group>
+          <accordion-group heading="Content 2">
+            <p>Content 2</p>
+          </accordion-group>
+        </accordion>
+  </ng-template>
+
+<ng-template #popTemplate>
+    <ul class=" list-group module-group" [dragula]='"bag1"' [dragulaModel]='copyModules'>
+        <li *ngFor='let module of copyModules' class="copyable list-group-item module-item">
+          <i class="fa fa-archive" aria-hidden="true"></i> {{module.name}}
+        </li>
+    </ul>
+</ng-template>
+
+
+
 
 
 <pre>{{modules | json}}</pre>

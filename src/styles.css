@@ -21,3 +21,42 @@ p {
   margin: 1rem auto;
   color: gray;
 }
+
+
+/******************* ngx-bootstrap *******************/
+
+accordion .card {
+  border: none;
+}
+
+accordion-group.panel .panel{
+  border-radius: 0;
+  border-bottom: 2px solid #ddd;
+}
+
+accordion-group.panel.panel-open .panel-heading{
+  background: rgba(0,0,0,.15);
+}
+
+
+
+accordion-group.panel:first-child .card {
+  border-radius: .25rem .25rem 0 0 ;
+}
+
+accordion-group.panel:last-child .card {
+  border-radius: 0 0 .25rem .25rem ;
+  border-bottom: none;
+}
+
+accordion .card-header {
+  padding: 0;
+  border: none;
+  font-family:Oswald;
+  user-select: none;
+  cursor: pointer;
+}
+
+accordion .card-header .card-title {
+  margin: .3em 0;
+}
