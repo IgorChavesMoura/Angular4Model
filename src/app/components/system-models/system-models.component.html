@@ -1,7 +1,7 @@
 <section class="editor">
   <header>
     <h2 (click)="isCollapsed = !isCollapsed">Static no html |{{application.name}}|</h2>
-    {{application | json}}
+   
     <div [collapse]="isCollapsed" class="card card-block card-header">
 
 
@@ -221,3 +221,6 @@
 
 <!-- 
 <pre>{{modules | json}}</pre> -->
+<pre>
+{{application | json}}
+</pre>

@@ -57,10 +57,10 @@ export class SystemModelsComponent implements OnInit {
     application: Application;
 
     ngOnInit() {
-        console.log(this.applicationService.fetchModel());
-        this.vehicles = this.applicationService.getVehicles();
+        //console.log(this.applicationService.fetchApplication());
+        //this.vehicles = this.applicationService.getVehicles();
         //this.application = this.applicationService.fetchModel();
-        this.applicationService.fetchModel().subscribe(result=>{
+        this.applicationService.fetchApplication().subscribe(result=>{
             this.application = result;
             console.log(this.application);
         });
@@ -226,7 +226,7 @@ export class SystemModelsComponent implements OnInit {
         console.log('selectModule: ' + index);
         this.selectedModuleId = index;
 
-        this.applicationService.teste1(index);
+
 
         //this.selectedEntityId = 0;
         //this.selectedFieldId = 0;

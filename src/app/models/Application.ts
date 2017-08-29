@@ -1,30 +1,17 @@
-export class Application {
+import { BaseAppClass } from "./BaseAppClass";
+import { ModuleApp } from "./ModuleApp";
 
-    private _id: number;
-    private _name: string;
-    private _version: number;
+export class Application extends BaseAppClass{
 
-    public get id(): number {
-        return this._id;
-    }
+    private _modules: Array<ModuleApp>;
 
-    public set id(value: number) {
-        this._id = value;
-    }
+	public get modules(): Array<ModuleApp> {
+		return this._modules;
+	}
 
-    public get name(): string {
-        return this._name;
-    }
+	public set modules(value: Array<ModuleApp>) {
+		this._modules = value;
+	}
+    
 
-    public set name(value: string) {
-        this._name = value;
-    }
-
-    public get version(): number {
-        return this._version;
-    }
-
-    public set version(value: number) {
-        this._version = value;
-    }
 }
