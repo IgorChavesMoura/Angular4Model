@@ -1,0 +1,36 @@
+<div class="btn-group-center">
+
+<div class="list-to-add" role="group" aria-label="Basic example">
+  <!--
+    <button type="button" class="btn btn-add" [popover]="popTemplate" triggers="focus">
+      <i class="fa fa-plus-circle" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-lib" [popover]="popTemplate1" triggers="focus">
+      <i class="fa fa-book" aria-hidden="true"></i>
+    </button>
+    -->
+
+  <button type="button" class="btn btn-add" (click)="addModule = !addModule" *ngIf="!addModule">
+        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+      </button>
+
+
+  <accordion [closeOthers]="true" *ngIf="addModule">
+    <accordion-group heading="group1">
+      This content is straight in the template.
+    </accordion-group>
+    <accordion-group heading="group2">
+      <p>Content 1</p>
+    </accordion-group>
+    <accordion-group heading="group3">
+      <ul class=" list-group module-group" [dragula]='bag' [dragulaModel]='listItems'>
+        <li *ngFor='let item of listItems' class="copyable list-group-item module-item">
+          <i class="fa fa-archive" aria-hidden="true"></i> {{item.name}}
+        </li>
+      </ul>
+    </accordion-group>
+  </accordion>
+
+</div>
+
+</div>

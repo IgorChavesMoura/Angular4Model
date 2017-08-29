@@ -60,3 +60,28 @@ accordion .card-header {
 accordion .card-header .card-title {
   margin: .3em 0;
 }
+
+.tab-dark{
+  }
+  
+  .nav-item.tab-dark .nav-link{
+    background-color: #567EBB;
+    color: #fff;
+    border: none;
+    font-family:Oswald;
+    border-radius: 0;
+    margin-right: 5px;
+  }
+  
+  .nav-tabs .nav-link.active{
+    background-color:#2B4C7E;
+  }
+   
+  .nav-tabs {
+    border-bottom: 4px solid #2b4c7e;
+}
+
+.tab-content>.active {
+  background: rgba(43, 76, 126, .1);
+  padding: 10px;
+}

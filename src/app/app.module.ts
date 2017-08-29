@@ -14,6 +14,9 @@ import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 //ngx-bootstrap
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+
 
 
 //Components
@@ -30,12 +33,15 @@ import { ChartComponent } from './components/chart/chart.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { EntityGenComponent } from './components/entity-gen/entity-gen.component';
 import { SystemModelsComponent } from './components/system-models/system-models.component';
+import { ListComponentComponent } from './components/list-component/list-component.component';
 
 //Services
 import { UserService } from './services/user/user.service';
 import { AppService } from './services/app/app.service';
 import { MaskService } from './services/mask/mask.service';
 import { EscapeHtmlPipePipe } from './pipes/escape-html/escape-html-pipe.pipe';
+import { ListDraggableComponent } from './components/list-draggable/list-draggable.component';
+import { ApplicationService } from './services/application/application.service';
 
 
 
@@ -80,11 +86,15 @@ const appRoutes : Routes = [
     AdminComponent,
     EscapeHtmlPipePipe,
     EntityGenComponent,
-    SystemModelsComponent
+    SystemModelsComponent,
+    ListComponentComponent,
+    ListDraggableComponent
   ],
   imports: [
     PopoverModule.forRoot(),
     AccordionModule.forRoot(),
+    CollapseModule.forRoot(),
+    TabsModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     NgbModule.forRoot(),
     FormsModule,
@@ -103,7 +113,8 @@ const appRoutes : Routes = [
   providers: [
     UserService,
     AppService,
-    MaskService
+    MaskService,
+    ApplicationService
   ],
   bootstrap: [AppComponent]
 })  

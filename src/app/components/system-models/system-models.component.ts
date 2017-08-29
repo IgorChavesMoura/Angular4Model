@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { StyleHelper } from '../../helpers/StyleHelper';
+import { AppService } from './../../services/app/app.service';
+import { ApplicationService } from './../../services/application/application.service';
+
+import { Observable } from 'rxjs';
+import { Application } from '../../models/Application';
 
 @Component({
     selector: 'app-system-models',
     templateUrl: './system-models.component.html',
-    styleUrls: ['./system-models.component.css']
+    styleUrls: ['./system-models.component.css', './system-models.component-base.css'],
+    providers: [ApplicationService]
 })
 export class SystemModelsComponent implements OnInit {
 
@@ -13,8 +19,13 @@ export class SystemModelsComponent implements OnInit {
     public selectedEntityId: number = 0;
     public selectedFieldId: number = 0;
     //  public selectedProperty;
+    public isCollapsed: boolean = true;
 
-    constructor(private dragulaService: DragulaService) {
+
+    constructor(private dragulaService: DragulaService, public appService:AppService, public applicationService: ApplicationService) {
+
+
+
         dragulaService.drag.subscribe((value) => {
             this.onDrag(value.slice(1));
         });
@@ -29,17 +40,33 @@ export class SystemModelsComponent implements OnInit {
             this.onOut(value.slice(1));
         });
 
-        dragulaService.setOptions('bag1', {
+        dragulaService.setOptions('bag1', { 
             copy: function (el, container, handle) {
                 let inComps = new RegExp('(?:^|\\s+)' + 'copyable' + '(?:\\s+|$)').test(el.className);
                 return inComps;
             }
             //,removeOnSpill: true
 
-            
+
         });
 
     }
+
+    vehicles: Observable<Array<any>>;
+
+    application: Application;
+
+    ngOnInit() {
+        console.log(this.applicationService.fetchModel());
+        this.vehicles = this.applicationService.getVehicles();
+        //this.application = this.applicationService.fetchModel();
+        this.applicationService.fetchModel().subscribe(result=>{
+            this.application = result;
+            console.log(this.application);
+        });
+       // this.applicationService.getApplication.subscribe(application => this.application = application);
+    }
+
 
     public copyModules: Array<any> = [
         {
@@ -56,6 +83,38 @@ export class SystemModelsComponent implements OnInit {
                 }
             ]
         },
+        {
+            name: 'Module type 2'
+        },
+    ]
+
+    public copyEntities: Array<any> = [
+        {
+            name: 'Entity 1',
+            fields: [
+                {
+                    name: 'id',
+                    type: 'number',
+                    properties: ['Unique', 'Primary']
+                }]
+        }
+    ]
+
+    public copyFields: Array<any> = [
+        {
+            name: 'id',
+            type: 'number',
+            properties: []
+        },
+        {
+            name: 'name',
+            type: 'string',
+            properties: []
+        }
+    ]
+
+    public copyProperties: Array<any> = [
+        'Unique', 'Primary'
     ]
 
     public modules: Array<any> = [
@@ -155,11 +214,20 @@ export class SystemModelsComponent implements OnInit {
         }
     ];
 
+    public aside: boolean = false;
 
+
+    private myFunction(index) {
+        this.aside = !this.aside;
+        console.log('myFunction: ' + index);
+    }
 
     private selectModule(index) {
         console.log('selectModule: ' + index);
         this.selectedModuleId = index;
+
+        this.applicationService.teste1(index);
+
         //this.selectedEntityId = 0;
         //this.selectedFieldId = 0;
 
@@ -226,9 +294,7 @@ export class SystemModelsComponent implements OnInit {
         return itemType[0];
     }
 
-    ngOnInit() {
-
-    }
+   
     /*
         ngOnInit() {
             this.dragula.dropModel.subscribe((value) => {

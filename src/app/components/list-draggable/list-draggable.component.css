@@ -1,0 +1,16 @@
+h3{
+    font-family:Oswald;
+    color: #556270;
+    user-select: none; 
+    cursor: default;
+}
+
+.list-group{
+    padding: 5px;
+    background: rgba(0,0,0,.05);
+}
+
+.ex-over {
+    background: rgba(0,0,0,0.1);
+    padding: 10px;
+}

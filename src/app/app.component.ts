@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges } from '@angular/core';
 import { trigger,state,style,animate,transition } from '@angular/animations';
 import { AppService } from './services/app/app.service';
 
@@ -8,21 +8,28 @@ import { AppService } from './services/app/app.service';
   styleUrls: ['./app.component.css']
   
 })
-export class AppComponent { 
+export class AppComponent implements OnChanges{
   
   title:string;
   collapse:boolean = true;
- 
+
   constructor(private appService:AppService) { 
-     this.title = this.appService.title;
   }
 
+  
   ngOnInit() {
+    this.title = this.appService.title;
   }
   
   toggleCollapse() {
     this.collapse = !this.collapse;
   }
+
+  ngOnChanges(changes) {
+    console.log("changes");
+    console.log(changes);
+  }
+
   
 }
 

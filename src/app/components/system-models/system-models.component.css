@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald');
 
 .editor{
-    padding: 10px;
+    padding: 10px 0;
 }
 
 pre{
@@ -12,7 +12,25 @@ pre{
 /******************* BOOTSTRAP *******************/
 .col-item{
    max-width: 25%;
+   /* padding-right: 5px;
+   padding-left: 5px; */
 }
+
+.col-item:first-child{
+    padding-right: 5px;
+}
+
+.col-item:last-child{
+    padding-left: 5px;
+}
+
+
+.col-item:not(:first-child):not(:last-child) { 
+    padding-right: 5px;
+   padding-left: 5px;
+}
+
+
 
 .col-item h3{
     font-family:Oswald;
@@ -27,19 +45,16 @@ pre{
     padding: .2em 1em .1em;
 }
 
-.btn-group-center{
-    text-align: center;
-}
 
-.btn-group-center .btn-group{
-    margin: 10px 0;
-}
+
 
 /******************* GROUPS *******************/
 
 .col-item{
-    /*background: rgba(0,0,0,0.1);*/
+    /*
+    background: rgba(0,0,0,0.1);
     padding: 5px; 
+    */
 }
 
 .module-group{
@@ -74,14 +89,16 @@ pre{
 
 
 .entity-item{
-    padding: .5em 1em;
+    padding: .5em;
     font-size: 1.1em;
 }
 .field-item{
-    padding: .4em 1em;
+    padding: .4em .5em;
+    font-size: .9em;
+    text-transform: uppercase;
 }
 .property-item{
-    padding: .2em 1em;
+    padding: .2em .5em;
     font-size: 0.8em;
 } 
 

@@ -1,0 +1,14 @@
+<div class="col col-item" >
+  <h3 [innerHtml]=title></h3>
+  <ul class=" list-group entity-group" [dragula]="bag" [dragulaModel]="listItems">
+    <li *ngFor='let item of listItems; let i = index' class="list-group-item list-group-item-action entity-item"
+      [ngClass]="{'active': selectedItem == i}" (click)="selectEntity(i)">
+      <i class="fa fa-folder" aria-hidden="true"></i> {{item.name}}
+    </li>
+  </ul>
+  <!-- <button type="button" class="btn btn-center"><i class="fa fa-plus-circle" aria-hidden="true"></i></button> -->
+
+  <app-list-component bag="bag" [listItems]="copyModules"></app-list-component>
+
+
+</div>
