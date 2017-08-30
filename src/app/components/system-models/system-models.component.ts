@@ -16,11 +16,12 @@ import { Application } from '../../models/Application';
 })
 export class SystemModelsComponent implements OnInit {
 
-    public selectedModuleId: number = 0;
-    public selectedEntityId: number = 0;
-    public selectedFieldId: number = 0;
-    //  public selectedProperty;
-    public isCollapsed: boolean = true;
+    public selected: object = {
+        moduleId: 0,
+        entityId: 0,
+        fieldId: 0,
+        propertyId: 0
+    };
 
     @ViewChild("bag1") bag1:ListDraggableComponent;
     @ViewChild("bag2") bag2:ListDraggableComponent;
@@ -233,28 +234,28 @@ export class SystemModelsComponent implements OnInit {
         console.log('myFunction: ' + index);
     }
 
-    private selectModule(index) {
-        console.log('selectModule: ' + index);
-        this.selectedModuleId = index;
+    // private selectModule(index) {
+    //     console.log('selectModule: ' + index);
+    //     this.selectedModuleId = index;
 
 
 
-        //this.selectedEntityId = 0;
-        //this.selectedFieldId = 0;
+    //     //this.selectedEntityId = 0;
+    //     //this.selectedFieldId = 0;
 
-    }
+    // }
 
-    private selectEntity(index) {
-        console.log('selectEntity: ' + index);
-        this.selectedEntityId = index;
-        //this.selectedFieldId = 0;
-    }
+    // private selectEntity(index) {
+    //     console.log('selectEntity: ' + index);
+    //     this.selectedEntityId = index;
+    //     //this.selectedFieldId = 0;
+    // }
 
-    private selectField(index) {
-        console.log('selectField: ' + index);
-        this.selectedFieldId = index;
+    // private selectField(index) {
+    //     console.log('selectField: ' + index);
+    //     this.selectedFieldId = index;
 
-    }
+    // }
 
     /*
         private selectProperty(property) {

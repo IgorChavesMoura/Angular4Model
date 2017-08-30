@@ -3,7 +3,7 @@
 
   <ul class=" list-group entity-group" [dragula]="bag" [dragulaModel]="listItems">
     <li *ngFor='let item of listItems; let i = index' class="list-group-item list-group-item-action entity-item"
-      [ngClass]="{'active': selectedItem == i}" (click)="selectItem(i)">
+      [ngClass]="{'active': selected[selectedProp] == i}" (click)="selectItem(i)">
       <i class="fa fa-folder" aria-hidden="true"></i> {{item.name}}
     </li>
   </ul>

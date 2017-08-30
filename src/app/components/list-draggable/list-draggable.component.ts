@@ -8,27 +8,26 @@ import { AppService } from './../../services/app/app.service';
 })
 export class ListDraggableComponent implements OnInit {
 
-  @Input()
-  title: string;
+  @Input() title: string;
 
-  @Input()
-  bag: string;
+  @Input() bag: string;
 
-  @Input()
-  listItems: Array<any>;
+  @Input() listItems: Array<any>;
 
-  @Input()
-  public selectedItem: number;
+  @Input() selected: object;
+
+  @Input() selectedProp: string;
 
   constructor(public appService:AppService) {
   }
 
   ngOnInit() {
+    console.log("## " + this.selectedProp + " this.selected: " + this.selected[this.selectedProp]);
   }
 
   private selectItem(index) {
-    this.selectedItem = index;
-    console.log("selectedItem: " + this.selectedItem);
+    this.selected[this.selectedProp] = index;
+    console.log("selectedItem: " + this.selected[this.selectedProp]);
   }
 
 }
