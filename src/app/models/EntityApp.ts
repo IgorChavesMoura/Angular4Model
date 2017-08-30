@@ -3,7 +3,7 @@ import { FieldApp } from "./FieldApp";
 
 export class EntityApp extends BaseAppClass {
 
-    private _fields: Array<FieldApp>;
+    private _fields: Array<FieldApp> = [];
 
     public get fields(): Array<FieldApp> {
         return this._fields;

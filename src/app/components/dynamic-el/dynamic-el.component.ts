@@ -9,8 +9,7 @@ import { SimpleComponent } from '../simple/simple.component';
 })
 export class DynamicElComponent implements OnInit {
 
-  testValue:number = 5;
-  lastComponent = null;
+
   componentRef:ComponentRef<SimpleComponent>;
   @ViewChild('target',{read:ViewContainerRef}) 
   dynamicContainer:ViewContainerRef; //ViewContainerRef tem metodos pra criar componentes dentro dele

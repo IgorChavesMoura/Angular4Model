@@ -3,7 +3,7 @@ import { ModuleApp } from "./ModuleApp";
 
 export class Application extends BaseAppClass{
 
-    private _modules: Array<ModuleApp>;
+    private _modules: Array<ModuleApp> = [];
 
 	public get modules(): Array<ModuleApp> {
 		return this._modules;

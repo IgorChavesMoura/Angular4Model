@@ -4,6 +4,7 @@ export class BaseAppClass {
     private _name: string;
     private _version: number;
     private _type: string;
+    private _order: number;
 
     public get id(): number {
         return this._id;
@@ -35,6 +36,14 @@ export class BaseAppClass {
 
     public set type(value: string) {
         this._type = value;
+    }
+
+    public get order(): number {
+        return this._order;
+    }
+
+    public set order(value: number) {
+        this._order = value;
     }
 
 }

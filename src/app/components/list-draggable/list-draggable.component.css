@@ -8,9 +8,123 @@ h3{
 .list-group{
     padding: 5px;
     background: rgba(0,0,0,.05);
+    min-height: 30px;
+    margin-bottom: 10px;
 }
 
 .ex-over {
     background: rgba(0,0,0,0.1);
     padding: 10px;
+}
+
+.btn-group-center{
+    text-align: center;
+}
+
+.btn-add {
+    padding: .2em 1em .1em;
+}
+
+.list-group-item{
+    user-select: none; 
+    cursor: default;
+}
+
+/**********************/
+
+
+.entity-item{
+    padding: .5em;
+    font-size: 1.1em;
+}
+.field-item{
+    padding: .4em .5em;
+    font-size: .9em;
+    text-transform: uppercase;
+}
+.property-item{
+    padding: .2em .5em;
+    font-size: 0.8em;
+} 
+
+.module-item.active,
+.entity-item.active,
+.field-item.active,
+.property-item.active{
+    background: #616668;
+}
+
+.module-item,
+.entity-item,
+.field-item,
+.property-item{
+    min-width: 200px;
+    font-family:Oswald;
+    user-select: none; 
+    cursor: pointer;
+}
+
+.module-item i{
+    /* transform: translate(0px,-.1em); */
+}
+
+.icon-empty-bag{
+    list-style: none;
+    text-align: center;
+    color: rgba(0, 0, 0, .4);
+    pointer-events: none;
+}
+
+/******************* BADGES *******************/
+.badge-right{
+    color: #fff;
+    float: right;
+    margin-top: 2px;
+   /* padding: .4em; */
+}
+
+.type-string{
+    background-color: #FD135A;
+}
+.type-string-email{
+    background-color: #CE126A;
+}
+.type-number{
+    background-color: #007bff;
+}
+
+.type-number-currency{
+    background-color: #17a2b8;
+}
+
+.type-number-cpf{
+    background-color: #1780B8;
+}
+
+.type-number-color{
+    background-color: #00D0FF;
+}
+
+.type-boolean{
+    background-color: #FFA007;
+}
+
+.type-boolean-active{
+    background-color: #FFBF07;
+}
+
+.type-date{
+    background-color: #28a745;
+}
+
+.type-date-birthday{
+    background-color: #1FC946;
+}
+
+.type-enum{
+    background-color: #731FC9;
+}
+
+.type-file{
+    background-color: #FC284F;
 }

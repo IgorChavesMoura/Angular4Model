@@ -49,50 +49,53 @@
 
   <main>
 
-    <div *ngFor='let vehicle of vehicles | async'>
-      {{vehicle.name}}
-    </div>
-
     <tabset>
       <tab heading="Core" customClass="tab-dark">
 
         <div class="row">
+          <app-list-draggable #bag1 [selected]="selected" selectedProp="module" title="Modules" bag="bag1" [listItems]="application.modules">
+            <!-- <app-list-component bag="bag1" [listItems]="copyModules"></app-list-component> -->
+          </app-list-draggable>
 
-{{selected.moduleId}}
-
-            <app-list-draggable #bag1 [selected]="selected" selectedProp="moduleId" title="Modules" bag="bag1" [listItems]="application.modules">
-                <app-list-component bag="bag1" [listItems]="copyModules"></app-list-component>
+          <ng-container *ngIf="application.modules[selected.module].entities">
+            <app-list-draggable #bag2 [selected]="selected" selectedProp="entity" title="Entities" bag="bag2" [listItems]="application.modules[selected.module].entities">
+              <!-- <app-list-component bag="bag2" [listItems]="copyModules"></app-list-component> -->
             </app-list-draggable>
-            
+          </ng-container>
 
-            <span *ngIf="application.modules[selected.moduleId].entities" >
-              <app-list-draggable #bag2 [selected]="selected" selectedProp="entityId" title="Entities" bag="bag2" [listItems]="application.modules[selected.moduleId].entities">
-                  <app-list-component bag="bag2" [listItems]="copyModules"></app-list-component>
-              </app-list-draggable>
-            </span>
+          <ng-container *ngIf="application.modules[selected.module].entities">
+            <ng-container *ngIf="application.modules[selected.module].entities[selected.entity]">
+              <ng-container *ngIf="application.modules[selected.module].entities[selected.entity].fields">
 
-              <span *ngIf="application.modules[selected.moduleId].entities && application.modules[selected.moduleId].entities[selected.entityId].fields" >
+                <app-list-draggable #bag3 [selected]="selected" selectedProp="field" title="Fields" bag="bag3" [listItems]="application.modules[selected.module].entities[selected.entity].fields">
+                  <!-- <app-list-component bag="bag3" [listItems]="copyModules"></app-list-component> -->
+                </app-list-draggable>
+
+              </ng-container>
+            </ng-container>
+          </ng-container>
+
+          <ng-container *ngIf="application.modules[selected.module].entities.length">
+            <ng-container *ngIf="application.modules[selected.module].entities[selected.entity].fields.length">
+              <ng-container *ngIf="application.modules[selected.module].entities[selected.entity].fields[selected.field].properties">
+
+                <app-list-draggable #bag4 [selected]="selected" selectedProp="property" title="Properties" bag="bag4" [listItems]="application.modules[selected.module].entities[selected.entity].fields[selected.field].properties">
+                  <!-- <app-list-component bag="bag4" [listItems]="copyModules"></app-list-component> -->
+                </app-list-draggable>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+
+          <!-- 
               
-              <app-list-draggable  #bag3 [selected]="selected" selectedProp="fieldId" title="Fields" bag="bag3" [listItems]="application.modules[selected.moduleId].entities[selected.entityId].fields">
-                <app-list-component bag="bag3" [listItems]="copyModules"></app-list-component>
-              </app-list-draggable>
-              
-            </span> 
-            
-               <span *ngIf="application.modules[selected.moduleId].entities && application.modules[selected.moduleId].entities[selected.entityId].fields && application.modules[selected.moduleId].entities[selected.entityId].fields[selected.fieldId].properties" >
-              <app-list-draggable #bag4 [selected]="selected" selectedProp="propertyId" title="Properties" bag="bag4" [listItems]="application.modules[selected.moduleId].entities[selected.entityId].fields[selected.fieldId].properties">
-                  <app-list-component bag="bag4" [listItems]="copyModules"></app-list-component>
-              </app-list-draggable>
-            </span>
+            -->
 
-
-
-<!-- 
+          <!-- 
           <div class="col col-item">
             <h3>Modules</h3>
             <ul class=" list-group module-group" [dragula]='"bag1"' [dragulaModel]='modules'>
               <li *ngFor='let module of application.modules; let i = index' class="list-group-item list-group-item-action list-group-item-dark module-item"
-                [ngClass]="{'active': selected.moduleId == i}" (click)="selectModule(i)" (dblclick)="myFunction(i)">
+                [ngClass]="{'active': selected.module == i}" (click)="selectModule(i)" (dblclick)="myFunction(i)">
                 <i class="fa fa-archive" aria-hidden="true"></i> {{module.name}}
               </li>
             </ul>
@@ -104,7 +107,7 @@
             <h3>Modules</h3>
             <ul class=" list-group module-group" [dragula]='"bag1"' [dragulaModel]='modules'>
               <li *ngFor='let module of modules; let i = index' class="list-group-item list-group-item-action list-group-item-dark module-item"
-                [ngClass]="{'active': selected.moduleId == i}" (click)="selectModule(i)" (dblclick)="myFunction(i)">
+                [ngClass]="{'active': selected.module == i}" (click)="selectModule(i)" (dblclick)="myFunction(i)">
                 <i class="fa fa-archive" aria-hidden="true"></i> {{module.name}}
               </li>
             </ul>
@@ -117,9 +120,9 @@
 
           <div class="col col-item" >
             <h3>Entities</h3>
-            <ul class=" list-group entity-group" [dragula]='"bag2"' [dragulaModel]='modules[selected.moduleId].entities'>
-              <li *ngFor='let entity of modules[selected.moduleId].entities; let i = index' class="list-group-item list-group-item-action entity-item"
-                [ngClass]="{'active': selected.entityId == i}" (click)="selectEntity(i)">
+            <ul class=" list-group entity-group" [dragula]='"bag2"' [dragulaModel]='modules[selected.module].entities'>
+              <li *ngFor='let entity of modules[selected.module].entities; let i = index' class="list-group-item list-group-item-action entity-item"
+                [ngClass]="{'active': selected.entity == i}" (click)="selectEntity(i)">
                 <i class="fa fa-folder" aria-hidden="true"></i> {{entity.name}}
               </li>
             </ul>
@@ -127,11 +130,11 @@
           </div> 
        
           
-          <div class="col col-item" *ngIf="modules[selected.moduleId].entities[selected.entityId]">
+          <div class="col col-item" *ngIf="modules[selected.module].entities[selected.entity]">
             <h3>Fields</h3>
-            <ul class=" list-group field-group" [dragula]='"bag3"' [dragulaModel]='modules[selected.moduleId].entities[selected.entityId].fields'>
-              <li *ngFor='let field of modules[selected.moduleId].entities[selected.entityId].fields; let i = index' class="list-group-item list-group-item-action field-item"
-              [ngClass]="{'active': selected.fieldId == i}" (click)="selectField(i)">
+            <ul class=" list-group field-group" [dragula]='"bag3"' [dragulaModel]='modules[selected.module].entities[selected.entity].fields'>
+              <li *ngFor='let field of modules[selected.module].entities[selected.entity].fields; let i = index' class="list-group-item list-group-item-action field-item"
+              [ngClass]="{'active': selected.field == i}" (click)="selectField(i)">
               
               <i class="fa fa-sticky-note" aria-hidden="true"></i>
               
@@ -143,10 +146,10 @@
           <button type="button" class="btn btn-center"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
         </div>
         
-        <div class="col col-item" *ngIf="modules[selected.moduleId].entities[selected.entityId].fields[selected.fieldId]">
+        <div class="col col-item" *ngIf="modules[selected.module].entities[selected.entity].fields[selected.field]">
           <h3>Properties</h3>
-          <ul class=" list-group property-group" [dragula]='"bag4"' [dragulaModel]='modules[selected.moduleId].entities[selected.entityId].fields[selected.fieldId].properties'>
-            <li *ngFor='let property of modules[selected.moduleId].entities[selected.entityId].fields[selected.fieldId].properties; let i = index'
+          <ul class=" list-group property-group" [dragula]='"bag4"' [dragulaModel]='modules[selected.module].entities[selected.entity].fields[selected.field].properties'>
+            <li *ngFor='let property of modules[selected.module].entities[selected.entity].fields[selected.field].properties; let i = index'
             class="list-group-item list-group-item-action property-item">
             {{property}}
           </li>
@@ -181,17 +184,19 @@
   </main>
   <aside [ngClass]="{'active': aside}">
 
+    xxx
+    <!-- 
 
     <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
-      <input class="form-control form-control-sm" type="text" [(ngModel)]="modules[selected.moduleId].name">
+      <input class="form-control form-control-sm" type="text" [(ngModel)]="modules[selected.module].name">
     </div>
 
     <div class="btn-group" role="group" aria-label="Basic example">
       <button type="button" class="btn btn-secondary">Left</button>
       <button type="button" class="btn btn-warning">Clear Contents</button>
       <button type="button" class="btn btn-danger">Remove</button>
-    </div>
+    </div> -->
 
   </aside>
 </section>
@@ -241,11 +246,11 @@
   </ul>
 
   <ul class="col list-group entity-group">
-    <li *ngFor='let entity of modules[selected.moduleId].entities' class="list-group-item list-group-item-action list-group-item-success entity-item">{{entity.name}}</li>
+    <li *ngFor='let entity of modules[selected.module].entities' class="list-group-item list-group-item-action list-group-item-success entity-item">{{entity.name}}</li>
   </ul>
 
   <ul class="col list-group field-group">
-    <li *ngFor='let field of modules[selected.moduleId].entities[selected.entityId].fields' class="list-group-item list-group-item-action field-item">{{field.name}} </li>
+    <li *ngFor='let field of modules[selected.module].entities[selected.entity].fields' class="list-group-item list-group-item-action field-item">{{field.name}} </li>
   </ul>
 
 </div>

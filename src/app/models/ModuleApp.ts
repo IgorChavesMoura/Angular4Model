@@ -3,7 +3,7 @@ import { EntityApp } from "./EntityApp";
 
 export class ModuleApp extends BaseAppClass{
 
-    private _entities: Array<EntityApp>;
+    private _entities: Array<EntityApp> = [];
 
 	public get entities(): Array<EntityApp> {
 		return this._entities;

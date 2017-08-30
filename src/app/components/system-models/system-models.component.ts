@@ -7,6 +7,7 @@ import { ListDraggableComponent } from "../list-draggable/list-draggable.compone
 
 import { Observable } from 'rxjs';
 import { Application } from '../../models/Application';
+import { ModuleApp } from '../../models/ModuleApp';
 
 @Component({
     selector: 'app-system-models',
@@ -16,11 +17,13 @@ import { Application } from '../../models/Application';
 })
 export class SystemModelsComponent implements OnInit {
 
+    public isCollapsed:boolean = true;
+
     public selected: object = {
-        moduleId: 0,
-        entityId: 0,
-        fieldId: 0,
-        propertyId: 0
+        module: 0,
+        entity: 0,
+        field: 0,
+        property: 0
     };
 
     @ViewChild("bag1") bag1:ListDraggableComponent;
@@ -29,8 +32,6 @@ export class SystemModelsComponent implements OnInit {
     @ViewChild("bag4") bag4:ListDraggableComponent;
 
     constructor(private dragulaService: DragulaService, public appService:AppService, public applicationService: ApplicationService) {
-
-
 
         dragulaService.drag.subscribe((value) => {
             this.onDrag(value.slice(1));
@@ -62,43 +63,41 @@ export class SystemModelsComponent implements OnInit {
 
     application: Application;
 
+    copyModules: Array<ModuleApp>;
+
     ngOnInit() {
-        console.log("bag1: " + this.bag1);
-        console.log("bag2: " + this.bag2);
-        console.log("bag3: " + this.bag3);
-        console.log("bag4: " + this.bag4);
 
-
-        //console.log(this.applicationService.fetchApplication());
-        //this.vehicles = this.applicationService.getVehicles();
-        //this.application = this.applicationService.fetchModel();
         this.applicationService.fetchApplication().subscribe(result=>{
             this.application = result;
-            console.log(this.application);
         });
+
+        this.applicationService.fetchCopyModules().subscribe(result=>{
+            this.copyModules = result;
+        });
+
        // this.applicationService.getApplication.subscribe(application => this.application = application);
     }
 
 
-    public copyModules: Array<any> = [
-        {
-            name: 'Module type 1',
-            entities: [
-                {
-                    name: 'User',
-                    fields: [
-                        {
-                            name: 'id',
-                            type: 'number',
-                            properties: ['Unique', 'Primary']
-                        }]
-                }
-            ]
-        },
-        {
-            name: 'Module type 2'
-        },
-    ]
+    // public copyModules: Array<any> = [
+    //     {
+    //         name: 'Module type 1',
+    //         entities: [
+    //             {
+    //                 name: 'User',
+    //                 fields: [
+    //                     {
+    //                         name: 'id',
+    //                         type: 'number',
+    //                         properties: ['Unique', 'Primary']
+    //                     }]
+    //             }
+    //         ]
+    //     },
+    //     {
+    //         name: 'Module type 2'
+    //     },
+    // ]
 
     public copyEntities: Array<any> = [
         {
@@ -302,7 +301,14 @@ export class SystemModelsComponent implements OnInit {
     ];
 
     public type(type: String) {
+
+        console.log("type: "+ type);
+
+
         let itemType: any = this.types.filter((item: any) => item.type === type);
+
+        console.log(itemType[0]);
+
         return itemType[0];
     }
 

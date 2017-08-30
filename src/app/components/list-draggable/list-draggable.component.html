@@ -1,13 +1,31 @@
-<div class="col col-item" >
+<div class="col col-item">
   <h3 [innerHtml]=title></h3>
 
-  <ul class=" list-group entity-group" [dragula]="bag" [dragulaModel]="listItems">
-    <li *ngFor='let item of listItems; let i = index' class="list-group-item list-group-item-action entity-item"
-      [ngClass]="{'active': selected[selectedProp] == i}" (click)="selectItem(i)">
-      <i class="fa fa-folder" aria-hidden="true"></i> {{item.name}}
+  <ul class="list-group" [dragula]="bag" [dragulaModel]="listItems">
+    <li *ngFor='let item of listItems; let i = index' class="list-group-item list-group-item-action {{selectedProp}}-item" [ngClass]="{'active': selected[selectedProp] == i}"
+      (click)="selectItem(i)">
+      <i class="fa" *ngIf="selectedProp != 'property'" aria-hidden="true" [ngClass]="{'fa-archive': selectedProp == 'module', 'fa-folder': selectedProp == 'entity', 'fa-sticky-note': selectedProp == 'field' }"></i>      {{item.name}}
+
+      <span *ngIf="selectedProp == 'property'" class="badge badge-right icon-field" [ngClass]="'type-' + item.type">
+        <i class="fa" aria-hidden="true" [ngClass]="type(item.type).icon"></i> {{item.type}}
+    </span>
+
     </li>
+    <ng-container *ngIf="listItems.length == 0">
+      <li class="icon-empty-bag">
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+      </li>
+    </ng-container>
   </ul>
+
+
+
+  <div class="btn-group-center">
+    <button type="button" class="btn btn-add" (click)="addNew()">
+    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+  </button>
+  </div>
   <!-- <button type="button" class="btn btn-center"><i class="fa fa-plus-circle" aria-hidden="true"></i></button> -->
-   <ng-content></ng-content>   
+  <ng-content></ng-content>
 
 </div>

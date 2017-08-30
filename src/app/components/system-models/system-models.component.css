@@ -80,7 +80,7 @@ pre{
 }
 
 /******************* ITEMS *******************/
-.module-item{
+/* .module-item{
     padding: .6em .5em;
     font-size: 1.3em;
     min-width: 200px;
@@ -106,7 +106,6 @@ pre{
 .entity-item.active,
 .field-item.active,
 .property-item.active{
-    /*pointer-events: none;*/
     background: #616668;
 }
 
@@ -126,7 +125,7 @@ pre{
 .icon-field{
     text-transform: uppercase;
 }
- 
+  */
 
 /******************* BADGES *******************/
 .badge-right{
