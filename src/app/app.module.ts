@@ -43,6 +43,7 @@ import { EscapeHtmlPipePipe } from './pipes/escape-html/escape-html-pipe.pipe';
 import { ListDraggableComponent } from './components/list-draggable/list-draggable.component';
 import { ApplicationService } from './services/application/application.service';
 import { DynamicElComponent } from './components/dynamic-el/dynamic-el.component';
+import { SimpleComponent } from './components/simple/simple.component';
 
 
 
@@ -91,7 +92,8 @@ const appRoutes : Routes = [
     SystemModelsComponent,
     ListComponentComponent,
     ListDraggableComponent,
-    DynamicElComponent
+    DynamicElComponent,
+    SimpleComponent
   ],
   imports: [
     PopoverModule.forRoot(),
