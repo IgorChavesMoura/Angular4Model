@@ -18,7 +18,7 @@ export class ListDraggableComponent implements OnInit {
   listItems: Array<any>;
 
   @Input()
-  selectedItem: number;
+  public selectedItem: number;
 
   constructor(public appService:AppService) {
   }
@@ -26,11 +26,9 @@ export class ListDraggableComponent implements OnInit {
   ngOnInit() {
   }
 
-  private selectEntity(index) {
-    console.log("index: " + index);
-    this.appService.title = "sheldon" + index;
-    console.log(this.appService.title);
+  private selectItem(index) {
     this.selectedItem = index;
+    console.log("selectedItem: " + this.selectedItem);
   }
 
 }

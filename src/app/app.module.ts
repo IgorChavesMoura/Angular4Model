@@ -42,6 +42,7 @@ import { MaskService } from './services/mask/mask.service';
 import { EscapeHtmlPipePipe } from './pipes/escape-html/escape-html-pipe.pipe';
 import { ListDraggableComponent } from './components/list-draggable/list-draggable.component';
 import { ApplicationService } from './services/application/application.service';
+import { DynamicElComponent } from './components/dynamic-el/dynamic-el.component';
 
 
 
@@ -65,6 +66,7 @@ const appRoutes : Routes = [
   { path:'gen/entity', component:EntityGenComponent },
   { path:'admin', component:AdminComponent },
   { path:'systemmodels', component:SystemModelsComponent },
+  { path:'dynamicel', component:DynamicElComponent },
 
   { path: '**', redirectTo:'/home', pathMatch:'full' }
 ];
@@ -88,7 +90,8 @@ const appRoutes : Routes = [
     EntityGenComponent,
     SystemModelsComponent,
     ListComponentComponent,
-    ListDraggableComponent
+    ListDraggableComponent,
+    DynamicElComponent
   ],
   imports: [
     PopoverModule.forRoot(),

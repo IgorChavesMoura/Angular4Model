@@ -1,0 +1,32 @@
+{
+    "id": 1,
+    "name": "App Test 1",
+    "version": 99,
+    "modules": [
+        {
+            "name": "Users",
+            "entities": [
+                {
+                    "name": "User",
+                    "fields": [
+                        {
+                            "name": "Name",
+                            "properties": [
+                                {
+                                    "name": "Number"
+                                }
+                            ]
+                        },
+                        {
+                            "properties": [
+                                {
+                                    "name": "String"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

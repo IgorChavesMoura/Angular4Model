@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { StyleHelper } from '../../helpers/StyleHelper';
 import { AppService } from './../../services/app/app.service';
 import { ApplicationService } from './../../services/application/application.service';
+import { ListDraggableComponent } from "../list-draggable/list-draggable.component";
 
 import { Observable } from 'rxjs';
 import { Application } from '../../models/Application';
@@ -21,6 +22,10 @@ export class SystemModelsComponent implements OnInit {
     //  public selectedProperty;
     public isCollapsed: boolean = true;
 
+    @ViewChild("bag1") bag1:ListDraggableComponent;
+    @ViewChild("bag2") bag2:ListDraggableComponent;
+    @ViewChild("bag3") bag3:ListDraggableComponent;
+    @ViewChild("bag4") bag4:ListDraggableComponent;
 
     constructor(private dragulaService: DragulaService, public appService:AppService, public applicationService: ApplicationService) {
 
@@ -57,6 +62,12 @@ export class SystemModelsComponent implements OnInit {
     application: Application;
 
     ngOnInit() {
+        console.log("bag1: " + this.bag1);
+        console.log("bag2: " + this.bag2);
+        console.log("bag3: " + this.bag3);
+        console.log("bag4: " + this.bag4);
+
+
         //console.log(this.applicationService.fetchApplication());
         //this.vehicles = this.applicationService.getVehicles();
         //this.application = this.applicationService.fetchModel();
