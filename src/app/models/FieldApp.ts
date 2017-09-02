@@ -5,6 +5,11 @@ export class FieldApp extends BaseAppClass {
 
     private _properties: Array<PropertyApp>  = [];
 
+	constructor() {
+        super();
+        this.model = "field";
+    }
+
     public get properties(): Array<PropertyApp> {
         return this._properties;
     }

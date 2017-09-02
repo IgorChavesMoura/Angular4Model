@@ -23,7 +23,7 @@
       <p>Content 1</p>
     </accordion-group>
     <accordion-group heading="group3">
-      <ul class=" list-group module-group" [dragula]='bag' [dragulaModel]='listItems'>
+      <ul class=" list-group module-group " [dragula]='bag' [dragulaModel]='listItems'>
         <li *ngFor='let item of listItems' class="copyable list-group-item module-item">
           <i class="fa fa-archive" aria-hidden="true"></i> {{item.name}}
         </li>

@@ -16,9 +16,20 @@ import { ModuleApp } from '../../models/ModuleApp';
     providers: [ApplicationService]
 })
 export class SystemModelsComponent implements OnInit {
-
-    public isCollapsed:boolean = true;
-
+    
+    public isCollapsed: boolean = true;
+    
+    private aside: boolean = false;
+    private editInstance: any;
+    
+    vehicles: Observable<Array<any>>;
+    
+    application: Application;
+    
+    copyModules: Array<ModuleApp>;
+    
+    subscription: any;
+    
     public selected: object = {
         module: 0,
         entity: 0,
@@ -26,12 +37,12 @@ export class SystemModelsComponent implements OnInit {
         property: 0
     };
 
-    @ViewChild("bag1") bag1:ListDraggableComponent;
-    @ViewChild("bag2") bag2:ListDraggableComponent;
-    @ViewChild("bag3") bag3:ListDraggableComponent;
-    @ViewChild("bag4") bag4:ListDraggableComponent;
+    @ViewChild("bag1") bag1: ListDraggableComponent;
+    @ViewChild("bag2") bag2: ListDraggableComponent;
+    @ViewChild("bag3") bag3: ListDraggableComponent;
+    @ViewChild("bag4") bag4: ListDraggableComponent;
 
-    constructor(private dragulaService: DragulaService, public appService:AppService, public applicationService: ApplicationService) {
+    constructor(private dragulaService: DragulaService, public appService: AppService, public applicationService: ApplicationService) {
 
         dragulaService.drag.subscribe((value) => {
             this.onDrag(value.slice(1));
@@ -47,7 +58,7 @@ export class SystemModelsComponent implements OnInit {
             this.onOut(value.slice(1));
         });
 
-        dragulaService.setOptions('bag1', { 
+        dragulaService.setOptions('bag1', {
             copy: function (el, container, handle) {
                 let inComps = new RegExp('(?:^|\\s+)' + 'copyable' + '(?:\\s+|$)').test(el.className);
                 return inComps;
@@ -57,31 +68,39 @@ export class SystemModelsComponent implements OnInit {
 
         });
 
+        
+
+
     }
 
-    vehicles: Observable<Array<any>>;
-
-    application: Application;
-
-    copyModules: Array<ModuleApp>;
 
     ngOnInit() {
 
-        this.applicationService.fetchApplication().subscribe(result=>{
+        this.applicationService.fetchApplication().subscribe(result => {
             this.application = result;
         });
 
-        this.applicationService.fetchCopyModules().subscribe(result=>{
+        this.applicationService.fetchCopyModules().subscribe(result => {
             this.copyModules = result;
         });
 
-       // this.applicationService.getApplication.subscribe(application => this.application = application);
+        this.applicationService.fetchAside().subscribe(result => {
+            console.log("teste1");
+            this.aside = result;
+        });
+
+        this.applicationService.fetchEditInstance().subscribe(result => {
+            console.log("teste2");
+            this.editInstance = result;
+        });
+
+        // this.applicationService.getApplication.subscribe(application => this.application = application);
     }
 
 
     // public copyModules: Array<any> = [
     //     {
-    //         name: 'Module type 1',
+    //         name: 'Module type 1',app-aside
     //         entities: [
     //             {
     //                 name: 'User',
@@ -128,110 +147,15 @@ export class SystemModelsComponent implements OnInit {
         'Unique', 'Primary'
     ]
 
-    public modules: Array<any> = [
-        {
-            name: 'Users',
-            entities: [
-                {
-                    name: 'User',
-                    fields: [
-                        {
-                            name: 'id',
-                            type: 'number',
-                            properties: ['Unique', 'Primary']
-                        },
-                        {
-                            name: 'name',
-                            type: 'string',
-                            properties: []
-                        },
-                        {
-                            name: 'email',
-                            type: 'string-email',
-                            properties: []
-                        },
-                        {
-                            name: 'birthday',
-                            type: 'date-birthday',
-                            properties: []
-                        }]
-                },
-                {
-                    name: 'Type',
-                    fields: [
-                        {
-                            name: 'id',
-                            type: 'number',
-                            properties: ['Unique', 'Primary']
-                        },
-                        {
-                            name: 'name',
-                            type: 'string',
-                            properties: []
-                        },
-                    ]
-                }
-            ]
-        },
-        {
-            name: 'Products',
-            entities: [
-                {
-                    name: 'Product',
-                    fields: [
-                        {
-                            name: 'id',
-                            type: 'number',
-                            properties: ['Unique', 'Primary']
-                        },
-                        {
-                            name: 'name',
-                            type: 'string'
-                        },
-                        {
-                            name: 'color',
-                            type: 'number-color',
-                            properties: []
-                        },
-                        {
-                            name: 'size',
-                            type: 'number',
-                            properties: []
-                        },
-                        {
-                            name: 'value',
-                            type: 'number-currency',
-                            properties: []
-                        }
-                    ]
-                },
-                {
-                    name: 'Type',
-                    fields: [
-                        {
-                            name: 'id',
-                            type: 'number',
-                            properties: ['Unique', 'Primary']
-                        },
-                        {
-                            name: 'name',
-                            type: 'string',
-                            properties: []
-                        },
-                    ]
-                }
+   
 
-            ]
-        }
-    ];
-
-    public aside: boolean = false;
+    // public aside: boolean = false;
 
 
-    private myFunction(index) {
-        this.aside = !this.aside;
-        console.log('myFunction: ' + index);
-    }
+    // private myFunction(index) {
+    //     this.aside = !this.aside;
+    //     console.log('myFunction: ' + index);
+    // }
 
     // private selectModule(index) {
     //     console.log('selectModule: ' + index);
@@ -252,7 +176,7 @@ export class SystemModelsComponent implements OnInit {
 
     // private selectField(index) {
     //     console.log('selectField: ' + index);
-    //     this.selectedFieldId = index;
+    //     this.selectedFiethis.subscription = this.navService.getNavChangeEmitter()
 
     // }
 
@@ -262,30 +186,32 @@ export class SystemModelsComponent implements OnInit {
         }
     */
     private onDrag(args) {
-        let [e, el] = args;
-        StyleHelper.removeClass(e, 'ex-moved');
+       // let [e, el] = args;
+       // StyleHelper.removeClass(e, ' ex-moved ');
     }
 
     private onDrop(args) {
 
-        let [el, target, source] = args;
+        //let [e, el, target, source] = args;
 
-        StyleHelper.addClass(el, 'ex-moved');
+
+        // StyleHelper.addClass(el, ' ex-moved ');
+
 
 
     }
 
     private onOver(args) {
         let [e, el, container] = args;
-        StyleHelper.addClass(el, 'ex-over');
+        StyleHelper.addClass(el, ' ex-over ');
     }
 
     private onOut(args) {
         let [e, el, container] = args;
-        StyleHelper.removeClass(el, 'ex-over');
+        StyleHelper.removeClass(el, ' ex-over ');
     }
 
-    public types: Array<any> = [
+    public types1: Array<any> = [
         { id: '10', label: 'String', type: 'string', icon: 'fa-align-left' },
         { id: '11', label: 'Email', type: 'string-email', icon: 'fa-envelope' },
         { id: '20', label: 'Number', type: 'number', icon: 'fa-hashtag' },
@@ -302,17 +228,17 @@ export class SystemModelsComponent implements OnInit {
 
     public type(type: String) {
 
-        console.log("type: "+ type);
+        console.log("type: " + type);
 
 
-        let itemType: any = this.types.filter((item: any) => item.type === type);
+        let itemType: any = this.types1.filter((item: any) => item.type === type);
 
         console.log(itemType[0]);
 
         return itemType[0];
     }
 
-   
+
     /*
         ngOnInit() {
             this.dragula.dropModel.subscribe((value) => {

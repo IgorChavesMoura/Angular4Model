@@ -29,30 +29,28 @@ accordion .card {
   border: none;
 }
 
-accordion-group.panel .panel{
+accordion-group.panel .panel {
   border-radius: 0;
   border-bottom: 2px solid #ddd;
 }
 
-accordion-group.panel.panel-open .panel-heading{
-  background: rgba(0,0,0,.15);
+accordion-group.panel.panel-open .panel-heading {
+  background: rgba(0, 0, 0, .15);
 }
 
-
-
 accordion-group.panel:first-child .card {
-  border-radius: .25rem .25rem 0 0 ;
+  border-radius: .25rem .25rem 0 0;
 }
 
 accordion-group.panel:last-child .card {
-  border-radius: 0 0 .25rem .25rem ;
+  border-radius: 0 0 .25rem .25rem;
   border-bottom: none;
 }
 
 accordion .card-header {
   padding: 0;
   border: none;
-  font-family:Oswald;
+  font-family: Oswald;
   user-select: none;
   cursor: pointer;
 }
@@ -61,27 +59,85 @@ accordion .card-header .card-title {
   margin: .3em 0;
 }
 
-.tab-dark{
-  }
-  
-  .nav-item.tab-dark .nav-link{
-    background-color: #567EBB;
-    color: #fff;
-    border: none;
-    font-family:Oswald;
-    border-radius: 0;
-    margin-right: 5px;
-  }
-  
-  .nav-tabs .nav-link.active{
-    background-color:#2B4C7E;
-  }
-   
-  .nav-tabs {
-    border-bottom: 4px solid #2b4c7e;
+.tab-dark {}
+
+.nav-item.tab-dark .nav-link {
+  background-color: #567EBB;
+  color: #fff;
+  border: none;
+  font-family: Oswald;
+  border-radius: 0;
+  margin-right: 5px;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #2B4C7E;
+}
+
+.nav-tabs {
+  border-bottom: 4px solid #2b4c7e;
 }
 
 .tab-content>.active {
   background: rgba(43, 76, 126, .1);
-  padding: 10px;
+  padding: 20px 30px;
+}
+
+
+/****************************************/
+
+.type-string {
+  background-color: #FD135A !important;
+}
+
+.type-string-email {
+  background-color: #CE126A !important;
+}
+
+.type-number {
+  background-color: #0d67c7 !important;
+}
+
+.type-number-currency {
+  background-color: #17a2b8 !important;
+}
+
+.type-number-cpf {
+  background-color: #1780B8 !important;
+}
+
+.type-number-color {
+  background-color: #00D0FF !important;
+}
+
+.type-boolean {
+  background-color: #FFA007 !important;
+}
+
+.type-boolean-active {
+  background-color: #FFBF07 !important;
+}
+
+.type-date {
+  background-color: #28a745 !important;
+}
+
+.type-date-birthday {
+  background-color: #1FC946 !important;
+}
+
+.type-enum {
+  background-color: #731FC9 !important;
+}
+
+.type-file {
+  background-color: #FC284F !important;
+}
+
+.type-list {
+  background-color: #336666 !important;
+}
+
+.type-class {
+  background-color: #C9306B !important;
 }

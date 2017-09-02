@@ -2,13 +2,21 @@
   <h3 [innerHtml]=title></h3>
 
   <ul class="list-group" [dragula]="bag" [dragulaModel]="listItems">
-    <li *ngFor='let item of listItems; let i = index' class="list-group-item list-group-item-action {{selectedProp}}-item" [ngClass]="{'active': selected[selectedProp] == i}"
-      (click)="selectItem(i)">
+    <li *ngFor='let item of listItems; let i = index' class="list-group-item list-group-item-action {{selectedProp}}-item" [ngClass]="{'selected':isSelected(item), 'active': selected[selectedProp] == i, 'lock-item': item.lock}"
+      (click)="selectItem(i, item)">
       <i class="fa" *ngIf="selectedProp != 'property'" aria-hidden="true" [ngClass]="{'fa-archive': selectedProp == 'module', 'fa-folder': selectedProp == 'entity', 'fa-sticky-note': selectedProp == 'field' }"></i>      {{item.name}}
 
-      <span *ngIf="selectedProp == 'property'" class="badge badge-right icon-field" [ngClass]="'type-' + item.type">
-        <i class="fa" aria-hidden="true" [ngClass]="type(item.type).icon"></i> {{item.type}}
-    </span>
+
+      <span *ngIf="selectedProp == 'property' || selectedProp == 'field'" class="badge badge-right" [ngClass]="'type-' + item.type">
+        <i class="fa" aria-hidden="true" [ngClass]="type(item.type).icon"></i>
+        <span class="badge-text">
+          {{item.type}}
+        </span>
+      </span>
+
+      <span *ngIf="item.lock" class="badge badge-right badge-lock">
+          <i class="fa fa-lock" aria-hidden="true"></i>
+      </span>
 
     </li>
     <ng-container *ngIf="listItems.length == 0">

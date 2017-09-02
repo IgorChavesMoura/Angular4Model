@@ -5,6 +5,11 @@ export class ModuleApp extends BaseAppClass{
 
     private _entities: Array<EntityApp> = [];
 
+	constructor() {
+        super();
+        this.model = "module";
+    }
+
 	public get entities(): Array<EntityApp> {
 		return this._entities;
 	}

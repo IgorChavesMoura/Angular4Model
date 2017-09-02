@@ -1,0 +1,54 @@
+label {
+  font-family: Oswald;
+  text-transform: uppercase;
+  font-size: .7em;
+}
+
+.form-control,
+input {
+  border: none;
+}
+
+button,
+.form-control {
+  font-family: Oswald;
+}
+
+.input-group-addon {
+  min-width: 3em;
+  display: block;
+  padding: .3em;
+  background: #00a0e0;
+  color: #fff;
+  border: none;
+}
+
+
+/*******************/
+
+.list-group {
+  margin: 0 auto 10px;
+}
+
+.list-group-item {
+  font-size: .8em;
+  padding: .4em .8em;
+  color: #fff;
+  border: none;
+  margin: 0 auto;
+  max-width: 70%;
+}
+
+.list-group-item i {
+  min-width: 1.5em;
+}
+
+.list-group-item.not-select {
+  background-color: #ccc !important;
+}
+
+.list-group-item-action:focus,
+.list-group-item-action:hover {
+    user-select: none;
+    border: none;
+}

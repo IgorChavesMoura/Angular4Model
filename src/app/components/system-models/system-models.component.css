@@ -128,11 +128,10 @@ pre{
   */
 
 /******************* BADGES *******************/
-.badge-right{
+/* .badge-right{
     color: #fff;
     float: right;
     margin-top: 2px;
-   /* padding: .4em; */
 }
 
 .type-string{
@@ -179,30 +178,16 @@ pre{
 
 .type-file{
     background-color: #FC284F;
-}
+} */
 
 /******************* DRAGULA *******************/
 .ex-over {
     background: rgba(0,0,0,0.1);
     padding: 10px;
 }
-/*
 
 
-{ id: '10', label: 'String',type: 'string', icon: 'fa-align-left' },
-{ id: '11', label: 'Email', type: 'string-email', icon: 'fa-envelope' },
-{ id: '20', label: 'Number', type: 'number', icon: 'fa-hashtag' },
-{ id: '21', label: 'Currency', type: 'number-currency', icon: 'fa-usd' },
-{ id: '22', label: 'Cpf', type: 'number-cpf', icon: 'fa-user' },
-{ id: '23', label: 'Color', type: 'number-color', icon: 'fa-square-o' },
-{ id: '30', label: 'Boolean', type: 'boolean', icon: 'fa-check-square' },
-{ id: '31', label: 'Active', type: 'boolean-active', icon: 'fa-check-square-o' },
-{ id: '40', label: 'Date', type: 'date', icon: 'fa-calendar-o' },
-{ id: '41', label: 'Birthday', type: 'date-birthday', icon: 'fa-calendar' },
-{ id: '50', label: 'Enum', type: 'enum', icon: 'fa-list' },
-{ id: '60', label: 'File', type: 'file', icon: 'fa-file-text' }
 
-*/
 
 
 /******************* actions *******************/

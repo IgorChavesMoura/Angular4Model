@@ -44,6 +44,7 @@ import { ListDraggableComponent } from './components/list-draggable/list-draggab
 import { ApplicationService } from './services/application/application.service';
 import { DynamicElComponent } from './components/dynamic-el/dynamic-el.component';
 import { SimpleComponent } from './components/simple/simple.component';
+import { AsideComponent } from './components/aside/aside.component';
 
 
 
@@ -93,7 +94,8 @@ const appRoutes : Routes = [
     ListComponentComponent,
     ListDraggableComponent,
     DynamicElComponent,
-    SimpleComponent
+    SimpleComponent,
+    AsideComponent
   ],
   imports: [
     PopoverModule.forRoot(),

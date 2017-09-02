@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AppService } from './../../services/app/app.service';
+
+import { ApplicationService } from './../../services/application/application.service';
 
 import { ModuleApp } from '../../models/ModuleApp';
 import { EntityApp } from '../../models/EntityApp';
@@ -23,31 +25,48 @@ export class ListDraggableComponent implements OnInit {
 
   @Input() selectedProp: string;
 
-  constructor(public appService: AppService) {
+  @Output() sheldon: EventEmitter<any> = new EventEmitter();
+  
+  private aside: boolean;
+  private editInstance: any;
+
+  private fieldTypes: Array<any>;
+  private propertyTypes: Array<any>;
+
+  constructor(public appService: AppService, public applicationService: ApplicationService) {
+    this.applicationService.fetchAside().subscribe(result => {
+      this.aside = result;
+    });
+
+    this.applicationService.fetchEditInstance().subscribe(result => {
+      this.editInstance = result;
+    });
+
+    this.applicationService.fetchFieldTypes().subscribe(result => {
+      this.fieldTypes = result;
+    });
+
+    this.applicationService.fetchPropertyTypes().subscribe(result => {
+      this.propertyTypes = result;
+    });
   }
 
   ngOnInit() {
     console.log("## " + this.selectedProp + " this.selected: " + this.selected[this.selectedProp]);
   }
 
-
-  public types: Array<any> = [
-    { id: '10', label: 'String', type: 'string', icon: 'fa-align-left' },
-    { id: '11', label: 'Email', type: 'string-email', icon: 'fa-envelope' },
-    { id: '20', label: 'Number', type: 'number', icon: 'fa-hashtag' },
-    { id: '21', label: 'Currency', type: 'number-currency', icon: 'fa-usd' },
-    { id: '22', label: 'Cpf', type: 'number-cpf', icon: 'fa-user' },
-    { id: '23', label: 'Color', type: 'number-color', icon: 'fa-square-o' },
-    { id: '30', label: 'Boolean', type: 'boolean', icon: 'fa-check-square' },
-    { id: '31', label: 'Active', type: 'boolean-active', icon: 'fa-check-square-o' },
-    { id: '40', label: 'Date', type: 'date', icon: 'fa-calendar-o' },
-    { id: '41', label: 'Birthday', type: 'date-birthday', icon: 'fa-calendar' },
-    { id: '50', label: 'Enum', type: 'enum', icon: 'fa-list' },
-    { id: '60', label: 'File', type: 'file', icon: 'fa-file-text' }
-  ];
-
   public type(type: String) {
-    let itemType: any = this.types.filter((item: any) => item.type === type);
+    
+    var allTypes = this.fieldTypes.concat(this.propertyTypes);
+    
+   // var allTypes = checkOil((<Vehicle[]>buses).concat(trucks));
+   // console.log(result)
+
+
+
+
+
+    let itemType: any = allTypes.filter((item: any) => item.type === type);
     return itemType[0];
   }
 
@@ -63,6 +82,10 @@ export class ListDraggableComponent implements OnInit {
         module.name = "new";
         module.entities = [];
         this.listItems.push(module);
+        module.id = this.listItems.length ;
+
+        this.selected["module"] = this.listItems.length - 1;
+        this.selectItem(this.selected["module"], module);
         break;
       }
       case "entity": {
@@ -70,27 +93,63 @@ export class ListDraggableComponent implements OnInit {
         entity.name = "new";
         entity.fields = [];
         this.listItems.push(entity);
+        entity.id = this.listItems.length ;
+
+
+        let fieldId: FieldApp = new FieldApp();
+        fieldId.name = "id";
+        fieldId.type = "number";
+        fieldId.lock = true;
+        fieldId.properties = [];
+        entity.fields.push(fieldId);
+
+
+
+        this.selected["entity"] = this.listItems.length - 1;
+        this.selectItem(this.selected["entity"], entity);
         break;
       }
       case "field": {
         let field: FieldApp = new FieldApp();
         field.name = "new";
+        field.type = "string";
         field.properties = [];
         this.listItems.push(field);
+        field.id = this.listItems.length ;
+
+        this.selected["field"] = this.listItems.length - 1;
+        this.selectItem(this.selected["field"], field);
         break;
       }
       case "property": {
-        let prop: PropertyApp = new PropertyApp();
-        prop.name = "new";
-        prop.type = "number";
-        this.listItems.push(prop);
+        let property: PropertyApp = new PropertyApp();
+        property.name = "new";
+        property.type = "number";
+        this.listItems.push(property);
+        property.id = this.listItems.length ;
+
+        this.selected["property"] = this.listItems.length - 1;
+        this.selectItem(this.selected["property"], property);
         break;
       }
     }
   }
 
-  private selectItem(index) {
+  public isSelected(item){
+        
+    if (this.applicationService._editInstance == item){
+      return true;
+    }
+    
+    return false;
+  }
 
+  private selectItem(index, item) {
+
+    this.applicationService._editList = this; 
+    
+    this.applicationService._editInstance = item as ModuleApp;
+    
     switch (this.selectedProp) {
       case "module": {
         this.selected["entity"] = 0;
@@ -109,9 +168,17 @@ export class ListDraggableComponent implements OnInit {
       }
     }
 
-
-
     this.selected[this.selectedProp] = index;
   }
+
+  // public dblclick(item) {
+
+  //   this.sheldon.emit(null);
+
+  //   this.applicationService._editInstance = item;
+  //   this.aside = !this.aside;
+
+  //   console.log(this.applicationService._editInstance);
+  // }
 
 }

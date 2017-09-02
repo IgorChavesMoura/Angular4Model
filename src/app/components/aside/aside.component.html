@@ -1,0 +1,62 @@
+<aside>
+
+  <div class="row">
+    <div class="col-6 form-group">
+      <div class="input-group">
+        <span class="input-group-addon">
+                  <i class="fa fa-hashtag" aria-hidden="true"></i>
+                </span>
+        <span class="form-control form-control-sm">{{applicationService._editInstance.id}}</span>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div *ngFor='let item of props; let i = index' class="form-group">
+    <label [innerHTML]="item.prop"></label>
+
+    <div class="input-group">
+      <span class="input-group-addon">
+        <i class="fa " aria-hidden="true" [ngClass]="item.icon"></i>
+      </span>
+      <input class="form-control form-control-sm" type="text" [(ngModel)]="applicationService._editInstance[item.prop]" [disabled]="!item.editable">
+    </div>
+
+  </div>
+
+
+
+  <div class="list-group" *ngIf="editInstance().model == 'field'">
+    <button *ngFor='let item of fieldTypes' type="button" class="list-group-item list-group-item-action type-{{item.type}}"
+      [ngClass]="{'not-select':item.type != applicationService._editInstance.type}" (click)="selectItem(item)" >
+      <i class="fa " aria-hidden="true" [ngClass]="item.icon"></i>
+      <span [innerHTML]="item.label"></span>
+    </button>
+  </div>
+
+  <div class="list-group" *ngIf="editInstance().model == 'property'">
+    <button *ngFor='let item of propertyTypes' type="button" class="list-group-item list-group-item-action type-{{item.type}}"
+      [ngClass]="{'not-select':item.type != applicationService._editInstance.type}" (click)="selectItem(item)" >
+      <i class="fa " aria-hidden="true" [ngClass]="item.icon"></i>
+      <span [innerHTML]="item.label"></span>
+    </button>
+  </div>
+
+  <!--
+    <div *ngIf="someCondition; else falsyTemplate">
+      <h1>Condition Passed!</h1>
+    </div>
+     
+    <ng-template #falsyTemplate>
+      <h1>Condition Failed!</h1>
+    </ng-template>
+  -->
+
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <!-- <button type="button" class="btn btn-secondary">Left</button> -->
+    <button type="button" class="btn btn-warning">Clear Contents</button>
+    <button type="button" class="btn btn-danger">Remove</button>
+  </div>
+
+</aside>

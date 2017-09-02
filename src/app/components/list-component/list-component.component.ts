@@ -36,7 +36,7 @@ export class ListComponentComponent implements OnInit {
   //       {
   //         name: 'User',
   //         fields: [
-  //           {
+  //           {new
   //             name: 'id',
   //             type: 'number',
   //             properties: ['Unique', 'Primary']
@@ -72,7 +72,7 @@ export class ListComponentComponent implements OnInit {
   }
 
   public addNew(){
-    // this.addModule = !this.addModule;
+    this.addModule = !this.addModule;
 
     this.applicationService.fetchApplication().subscribe(result=>{
 
@@ -91,14 +91,14 @@ export class ListComponentComponent implements OnInit {
       let module = new ModuleApp();
       module.name = "Xico";
       
-      // module.entities = [];
-      // module.entities.push(entity1);
-      // entity1.fields = [];
-      // entity1.fields.push(field2);
-      // field2.properties = [];
-      // field2.properties.push(prop1);
+      module.entities = [];
+      module.entities.push(entity1);
+      entity1.fields = [];
+      entity1.fields.push(field2);
+      field2.properties = [];
+      field2.properties.push(prop1);
 
-      result.modules.push(module);
+      //result.modules.push(module);
     });
   }
 

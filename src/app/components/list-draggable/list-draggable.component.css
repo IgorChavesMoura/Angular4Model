@@ -1,130 +1,160 @@
-h3{
-    font-family:Oswald;
-    color: #556270;
-    user-select: none; 
-    cursor: default;
+h3 {
+  font-family: Oswald;
+  color: #556270;
+  user-select: none;
+  cursor: default;
 }
 
-.list-group{
-    padding: 5px;
-    background: rgba(0,0,0,.05);
-    min-height: 30px;
-    margin-bottom: 10px;
+.list-group {
+  padding: 5px;
+  background: rgba(0, 0, 0, .05);
+  min-height: 30px;
+  margin-bottom: 10px;
 }
 
 .ex-over {
-    background: rgba(0,0,0,0.1);
-    padding: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 10px;
 }
 
-.btn-group-center{
-    text-align: center;
+.btn-group-center {
+  text-align: center;
 }
 
 .btn-add {
-    padding: .2em 1em .1em;
+  padding: .2em 1em .1em;
 }
 
-.list-group-item{
-    user-select: none; 
-    cursor: default;
+.list-group-item {
+  user-select: none;
+  cursor: default;
 }
+
 
 /**********************/
 
+.module-item {
+  padding: .75rem .5rem;
+}
 
-.entity-item{
-    padding: .5em;
-    font-size: 1.1em;
+.entity-item {
+  padding: .5em;
+  font-size: 1.1em;
 }
-.field-item{
-    padding: .4em .5em;
-    font-size: .9em;
-    text-transform: uppercase;
+
+.field-item {
+  padding: .4em 1.1em .4em .5em;
+  font-size: .9em;
+  text-transform: uppercase;
+  line-height: 1.3em;
 }
-.property-item{
-    padding: .2em .5em;
-    font-size: 0.8em;
-} 
+
+.property-item {
+  padding: .2em .2em .2em .5em;
+  font-size: 0.8em;
+  line-height: 1.3em;
+}
 
 .module-item.active,
 .entity-item.active,
 .field-item.active,
-.property-item.active{
-    background: #616668;
+.property-item.active {
+  background: #607890;
+}
+
+.module-item.selected,
+.entity-item.selected,
+.field-item.selected,
+.property-item.selected {
+  background: #00a0e0;
+  color: #fff;
+}
+
+.module-item.active:before,
+.entity-item.active:before,
+.field-item.active:before {
+  content: "\f054";
+  font: normal normal normal 14px/1 FontAwesome;
+  display: block;
+  position: absolute;
+  right: 2px;
+  top: 33%;
+  opacity: .5;
 }
 
 .module-item,
 .entity-item,
 .field-item,
-.property-item{
-    min-width: 200px;
-    font-family:Oswald;
-    user-select: none; 
-    cursor: pointer;
+.property-item {
+  border:none;
+  font-family: Oswald;
+  user-select: none;
+  cursor: pointer;
 }
 
-.module-item i{
-    /* transform: translate(0px,-.1em); */
+.module-item:not(:first-child),
+.entity-item:not(:first-child),
+.field-item:not(:first-child),
+.property-item:not(:first-child) {
+  border-top: 1px solid #ccc;
 }
 
-.icon-empty-bag{
-    list-style: none;
-    text-align: center;
-    color: rgba(0, 0, 0, .4);
-    pointer-events: none;
+.module-item i {
+  /* transform: translate(0px,-.1em); */
 }
+
+.icon-empty-bag {
+  list-style: none;
+  text-align: center;
+  color: rgba(0, 0, 0, .4);
+  pointer-events: none;
+}
+
+.lock-item {}
+
 
 /******************* BADGES *******************/
-.badge-right{
-    color: #fff;
-    float: right;
-    margin-top: 2px;
-   /* padding: .4em; */
+
+.badge-text {
+  font-size: 120%;
+  text-transform: capitalize;
 }
 
-.type-string{
-    background-color: #FD135A;
-}
-.type-string-email{
-    background-color: #CE126A;
-}
-.type-number{
-    background-color: #007bff;
-}
-
-.type-number-currency{
-    background-color: #17a2b8;
+.badge-right {
+  margin-left: 10px;
+  color: #fff;
+  float: right;
+  height: 1.8em;
+  /* margin-top: 2px; */
+  /* padding: .4em; */
 }
 
-.type-number-cpf{
-    background-color: #1780B8;
+.badge-lock {
+  background: red;
+  padding: .1em .4em;
+  height: 1.4em;
+  margin-top: 2px;
 }
 
-.type-number-color{
-    background-color: #00D0FF;
+
+
+/**************/
+
+.col-item {
+  min-width: 150px;
+  /* padding-right: 5px;
+    padding-left: 5px; */
 }
 
-.type-boolean{
-    background-color: #FFA007;
+.col-item:first-child {
+  padding-right: 5px;
 }
 
-.type-boolean-active{
-    background-color: #FFBF07;
+.col-item:last-child {
+  padding-left: 5px;
 }
 
-.type-date{
-    background-color: #28a745;
-}
-
-.type-date-birthday{
-    background-color: #1FC946;
-}
-
-.type-enum{
-    background-color: #731FC9;
-}
-
-.type-file{
-    background-color: #FC284F;
+.col-item:not(:first-child):not(:last-child) {
+  padding-right: 5px;
+  padding-left: 5px;
 }

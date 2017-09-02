@@ -5,6 +5,8 @@ export class BaseAppClass {
     private _version: number;
     private _type: string;
     private _order: number;
+    private _lock: boolean;
+    private _model: string;
 
     public get id(): number {
         return this._id;
@@ -46,4 +48,20 @@ export class BaseAppClass {
         this._order = value;
     }
 
+    public get lock(): boolean {
+        return this._lock;
+    }
+
+    public set lock(value: boolean) {
+        this._lock = value;
+    }
+
+	public get model(): string {
+		return this._model;
+	}
+
+	public set model(value: string) {
+		this._model = value;
+	}
+    
 }
